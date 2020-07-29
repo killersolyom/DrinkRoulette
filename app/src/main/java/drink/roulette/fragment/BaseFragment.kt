@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import butterknife.ButterKnife
 import drink.roulette.communication.EventListener
-import drink.roulette.model.Event
+import drink.roulette.model.event.Event
 
 abstract class BaseFragment : Fragment(), EventListener {
 

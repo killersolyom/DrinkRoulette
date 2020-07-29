@@ -26,4 +26,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        FragmentNavigation.onBackPressed()
+    }
+
 }

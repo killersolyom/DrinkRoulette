@@ -1,6 +1,7 @@
 package drink.roulette.utility
 
 import drink.roulette.activity.MainActivity
+import drink.roulette.data.JsonDataParser
 
 class UtilityManager {
 
@@ -8,6 +9,7 @@ class UtilityManager {
         @JvmStatic
         fun initUtilities(activity: MainActivity?) {
             FragmentNavigation.initialize(activity)
+            QuestionManager.initialize(activity!!.applicationContext)
         }
     }
 

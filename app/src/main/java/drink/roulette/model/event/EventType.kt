@@ -1,4 +1,4 @@
-package drink.roulette.model
+package drink.roulette.model.event
 
 enum class EventType(val type: Int) {
     TYPE_ONE(0),

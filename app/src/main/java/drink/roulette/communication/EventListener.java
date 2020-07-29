@@ -1,6 +1,6 @@
 package drink.roulette.communication;
 
-import drink.roulette.model.Event;
+import drink.roulette.model.event.Event;
 
 public interface EventListener {
 

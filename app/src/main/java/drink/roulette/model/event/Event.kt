@@ -1,4 +1,4 @@
-package drink.roulette.model
+package drink.roulette.model.event
 
 class Event(code: EventCode, type: EventType) {
     private var mCode = code
