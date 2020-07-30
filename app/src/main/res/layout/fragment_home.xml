@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.szugyi.circlemenu.view.CircleLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/circle_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.HomeFragment">
+    android:layout_gravity="center_horizontal"
+    app:firstChildPosition="North">
 
-    <com.szugyi.circlemenu.view.CircleLayout
-        android:id="@+id/circle_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:firstChildPosition="North"
-        android:layout_gravity="center_horizontal">
-        <include layout="@layout/circular_menu_items" />
-    </com.szugyi.circlemenu.view.CircleLayout>
+    <include layout="@layout/circular_menu_items" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.szugyi.circlemenu.view.CircleLayout>

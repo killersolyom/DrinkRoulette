@@ -4,27 +4,38 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import drink.roulette.R
 import drink.roulette.activity.MainActivity
-import drink.roulette.fragment.BaseFragment
-import drink.roulette.fragment.HomeFragment
+import drink.roulette.fragment.*
 import kotlin.system.exitProcess
 
 
 class FragmentNavigation {
     companion object {
 
-        private var mFragmentManager: FragmentManager? = null
+        private lateinit var mFragmentManager: FragmentManager
 
         @JvmStatic
         fun initialize(activity: MainActivity?) {
-            mFragmentManager = activity?.supportFragmentManager
+            mFragmentManager = activity!!.supportFragmentManager
         }
 
         fun showHomeFragment() {
             showFragment(HomeFragment())
         }
 
+        fun showPlayerInputFragment() {
+            showFragment(PlayerInputFragment())
+        }
+
+        fun showMoreFragment() {
+            showFragment(MoreInfoFragment())
+        }
+
+        fun showSettingsFragment() {
+            showFragment(SettingsFragment())
+        }
+
         private fun showFragment(fragment: BaseFragment) {
-            mFragmentManager!!
+            mFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment, fragment.TAG)
                 .addToBackStack(fragment.TAG)
@@ -40,7 +51,7 @@ class FragmentNavigation {
         }
 
         private fun popBackStack() {
-            mFragmentManager!!.popBackStack()
+            mFragmentManager.popBackStack()
         }
 
         private fun shouldPop(): Boolean {
@@ -50,13 +61,12 @@ class FragmentNavigation {
 
         private fun getTopFragment(): BaseFragment? {
             return mFragmentManager
-                ?.fragments
-                ?.stream()
-                ?.filter { it: Fragment -> it is BaseFragment && it.isVisible() }
+                .fragments
+                .stream()
+                .filter { it is BaseFragment && it.isVisible() }
                 ?.findFirst()
-                ?.orElse(null)?.let { it1 ->
-                    castToBaseFragment(it1)
-                }
+                ?.orElse(null)
+                ?.let { it1 -> castToBaseFragment(it1) }
         }
 
         private fun castToBaseFragment(fragment: Fragment): BaseFragment? {
@@ -66,11 +76,11 @@ class FragmentNavigation {
         private fun clearBackStack(clearAll: Boolean) {
             val index: Int = if (clearAll) 0 else 1
             for (i in index until mFragmentManager!!.backStackEntryCount) {
-                mFragmentManager!!.popBackStack()
+                mFragmentManager.popBackStack()
             }
         }
 
-        private fun exit() {
+        fun exit() {
             clearBackStack(true)
             exitProcess(0)
         }
