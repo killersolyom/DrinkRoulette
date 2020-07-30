@@ -2,7 +2,7 @@ package drink.roulette.data
 
 import android.content.Context
 import drink.roulette.R
-import drink.roulette.model.parser.JsonPropertyName
+import drink.roulette.model.JsonPropertyName
 import drink.roulette.model.questions.challenge.ChallengeForAll
 import drink.roulette.model.questions.challenge.DedicatedPlayerChallenge
 import drink.roulette.model.questions.challenge.TwoPlayerChallenge

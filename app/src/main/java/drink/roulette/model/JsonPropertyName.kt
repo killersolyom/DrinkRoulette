@@ -1,4 +1,4 @@
-package drink.roulette.model.parser
+package drink.roulette.model
 
 enum class JsonPropertyName(val property: String) {
     QUESTIONS("QUESTIONS"),

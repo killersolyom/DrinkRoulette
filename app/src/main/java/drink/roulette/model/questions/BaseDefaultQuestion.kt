@@ -1,8 +1,8 @@
 package drink.roulette.model.questions
 
-import drink.roulette.model.BaseItem
+import drink.roulette.model.QuestionType
 
-abstract class BaseDefaultQuestion : BaseItem {
+abstract class BaseDefaultQuestion {
 
     private var mId: Int = -1
     protected var mDescription: String = ""
@@ -19,5 +19,7 @@ abstract class BaseDefaultQuestion : BaseItem {
     fun getId(): Int {
         return mId
     }
+
+    abstract fun getQuestionType(): QuestionType
 
 }
