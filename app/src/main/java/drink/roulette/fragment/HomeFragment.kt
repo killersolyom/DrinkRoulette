@@ -1,6 +1,5 @@
 package drink.roulette.fragment
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import butterknife.BindView
@@ -27,9 +26,8 @@ class HomeFragment : BaseFragment(), CircleLayout.OnItemClickListener {
 
     override fun onInitializationFinished() {
         mCircleMenu.setOnItemClickListener(this)
-        Log.d("3ss", "onInitializationFinished")
-        Glide.with(this).load(R.drawable.martini).into(mMartiniImage);
-        Glide.with(this).load(R.drawable.vodka).into(mVodkaImage);
+        Glide.with(this).load(R.drawable.martini).into(mMartiniImage)
+        Glide.with(this).load(R.drawable.vodka).into(mVodkaImage)
     }
 
     override fun onItemClick(view: View) {
@@ -41,9 +39,9 @@ class HomeFragment : BaseFragment(), CircleLayout.OnItemClickListener {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun removeCallbacks() {
         Glide.with(this).clear(mMartiniImage)
         Glide.with(this).clear(mVodkaImage)
     }
+
 }

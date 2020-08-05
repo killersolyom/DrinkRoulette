@@ -26,8 +26,11 @@ class PlayerInputFragment : BaseFragment() {
         return R.layout.fragment_player_input
     }
 
-    override fun onInitializationFinished() {
+    override fun initComponents() {
         mItemAdapter = ItemAdapter()
+    }
+
+    override fun onInitializationFinished() {
         mPlayerRecyclerView.setAdapter(mItemAdapter)
         mAddButton.setOnClickListener { mItemAdapter.addItem(PlayerNameItem("Player")) }
     }

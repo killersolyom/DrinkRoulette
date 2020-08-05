@@ -13,7 +13,4 @@ class SettingsFragment : BaseFragment() {
 
     }
 
-
-
-
 }

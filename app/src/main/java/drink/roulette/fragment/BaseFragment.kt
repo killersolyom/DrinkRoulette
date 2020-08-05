@@ -18,13 +18,18 @@ abstract class BaseFragment : Fragment(), EventListener {
         if (view == null) {
             mView = inflanter.inflate(getLayoutId(), container, false)
         }
+        initComponents()
         ButterKnife.bind(this, mView)
         return mView
     }
 
+    protected abstract fun getLayoutId(): Int
+
+    protected open fun initComponents() {}
+
     protected abstract fun onInitializationFinished()
 
-    protected abstract fun getLayoutId(): Int
+    protected open fun removeCallbacks() {}
 
     override fun onEvent(event: Event?): Boolean {
         return false
@@ -35,4 +40,8 @@ abstract class BaseFragment : Fragment(), EventListener {
         onInitializationFinished()
     }
 
+    override fun onPause() {
+        super.onPause()
+        removeCallbacks()
+    }
 }
