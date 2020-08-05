@@ -15,9 +15,10 @@ abstract class BaseFragment : Fragment(), EventListener {
     private lateinit var mView: View
 
     override fun onCreateView(inflanter: LayoutInflater, container: ViewGroup?, b: Bundle?): View? {
-        mView = inflanter.inflate(getLayoutId(), container, false)
+        if (view == null) {
+            mView = inflanter.inflate(getLayoutId(), container, false)
+        }
         ButterKnife.bind(this, mView)
-        onInitializationFinished()
         return mView
     }
 
@@ -25,9 +26,13 @@ abstract class BaseFragment : Fragment(), EventListener {
 
     protected abstract fun getLayoutId(): Int
 
-
     override fun onEvent(event: Event?): Boolean {
         return false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        onInitializationFinished()
     }
 
 }
