@@ -11,19 +11,21 @@ import butterknife.ButterKnife
 
 abstract class BaseCustomView<Item>(context: Context, attrs: AttributeSet?) :
     ConstraintLayout(context, attrs) {
-    private lateinit var itemView: View
+    protected lateinit var mItemView: View
 
     private fun inflateView(context: Context) {
-        itemView = LayoutInflater.from(context).inflate(getLayoutId(), this, true);
+        mItemView = LayoutInflater.from(context).inflate(getLayoutId(), this, true);
     }
 
     protected abstract fun getLayoutId(): Int
 
     private fun initView() {
-        ButterKnife.bind(this, itemView)
+        ButterKnife.bind(this, mItemView)
     }
 
     protected abstract fun onInitializationFinished()
+
+    protected abstract fun onDestroy()
 
     fun bindItem(item: Item, layoutParams: ViewGroup.LayoutParams?) {}
 

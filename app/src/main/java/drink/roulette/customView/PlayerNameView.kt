@@ -17,13 +17,14 @@ class PlayerNameView(context: Context, attrs: AttributeSet?) :
         return R.layout.player_names_view
     }
 
-    override fun onInitializationFinished() {
-
-    }
+    override fun onInitializationFinished() {}
 
     fun setText(text: String) {
         mItemText.text = text
     }
 
+    public override fun onDestroy() {
+        mItemText.text = null
+    }
 
 }

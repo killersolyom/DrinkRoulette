@@ -17,7 +17,7 @@ class PlayerNameViewHolder(itemView: View) : BaseViewHolder<PlayerNameItem>(item
     }
 
     override fun unBindItem() {
-
+        mPlayerNameView.onDestroy()
     }
 
 }
