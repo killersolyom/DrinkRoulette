@@ -15,19 +15,26 @@ class HomeFragment : BaseFragment(), CircleLayout.OnItemClickListener {
     lateinit var mCircleMenu: CircleLayout
 
     @BindView(R.id.bottle_image_1)
-    lateinit var mMartiniImage: ImageView
+    lateinit var mFirstImage: ImageView
 
     @BindView(R.id.bottle_image_2)
-    lateinit var mVodkaImage: ImageView
+    lateinit var mSecondImage: ImageView
+
+    private val MINIMUM_IMAGE_SIZE: Float = 0.25f
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
     }
 
     override fun onInitializationFinished() {
+        // Set listeners
         mCircleMenu.setOnItemClickListener(this)
-        Glide.with(this).load(R.drawable.martini).into(mMartiniImage)
-        Glide.with(this).load(R.drawable.vodka).into(mVodkaImage)
+        mFirstImage.setOnClickListener {}
+        mSecondImage.setOnClickListener {}
+
+        // Load images
+        Glide.with(this).load(R.drawable.martini).into(mFirstImage)
+        Glide.with(this).load(R.drawable.vodka).into(mSecondImage)
     }
 
     override fun onItemClick(view: View) {
@@ -40,8 +47,8 @@ class HomeFragment : BaseFragment(), CircleLayout.OnItemClickListener {
     }
 
     override fun removeCallbacks() {
-        Glide.with(this).clear(mMartiniImage)
-        Glide.with(this).clear(mVodkaImage)
+        Glide.with(this).clear(mFirstImage)
+        Glide.with(this).clear(mSecondImage)
     }
 
 }

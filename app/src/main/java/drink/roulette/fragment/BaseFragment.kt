@@ -12,7 +12,7 @@ import drink.roulette.model.event.Event
 abstract class BaseFragment : Fragment(), EventListener {
 
     val TAG = this.javaClass.canonicalName
-    private lateinit var mView: View
+    internal lateinit var mView: View
 
     override fun onCreateView(inflanter: LayoutInflater, container: ViewGroup?, b: Bundle?): View? {
         if (view == null) {
