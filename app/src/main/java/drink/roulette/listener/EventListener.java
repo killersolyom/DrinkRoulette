@@ -1,4 +1,4 @@
-package drink.roulette.communication;
+package drink.roulette.listener;
 
 import drink.roulette.model.event.Event;
 

@@ -15,14 +15,11 @@ abstract class BaseActivity : AppCompatActivity(), Module {
         super.onCreate(savedInstanceState)
         mIsInstanceStateSaved = false
         ModuleInjector().initModules(this)
-        injectModules()
+        ModuleInjector.inject(this)
         handleIntentEvents(intent)
     }
 
     abstract fun handleIntentEvents(intent: Intent)
-
-    protected open fun injectModules() {
-    }
 
     override fun onStart() {
         super.onStart()

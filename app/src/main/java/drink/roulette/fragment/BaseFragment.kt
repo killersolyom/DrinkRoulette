@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import butterknife.ButterKnife
-import drink.roulette.communication.EventListener
+import drink.roulette.listener.EventListener
 import drink.roulette.model.event.Event
 import drink.roulette.utility.FragmentNavigation
-import drink.roulette.utility.moduleInjector.ModuleInjector.Companion.getModule
+import drink.roulette.utility.moduleInjector.InjectorAnnotation.Inject
+import drink.roulette.utility.moduleInjector.ModuleInjector
 
 abstract class BaseFragment : Fragment(), EventListener {
 
@@ -17,7 +18,8 @@ abstract class BaseFragment : Fragment(), EventListener {
 
     private lateinit var mView: View
 
-    internal val mNavigator: FragmentNavigation = getModule(FragmentNavigation::class.java)
+    @Inject(FragmentNavigation::class)
+    lateinit var mNavigator: FragmentNavigation
 
     override fun onCreateView(inflanter: LayoutInflater, container: ViewGroup?, b: Bundle?): View? {
         if (view == null) {
@@ -25,6 +27,7 @@ abstract class BaseFragment : Fragment(), EventListener {
         }
         initComponents()
         ButterKnife.bind(this, mView)
+        ModuleInjector.inject(this)
         return mView
     }
 

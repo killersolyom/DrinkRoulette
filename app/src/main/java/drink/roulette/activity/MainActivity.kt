@@ -4,14 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import drink.roulette.R
 import drink.roulette.utility.FragmentNavigation
-import drink.roulette.utility.moduleInjector.ModuleInjector
+import drink.roulette.utility.moduleInjector.InjectorAnnotation.Inject
 
 
 class MainActivity : BaseActivity() {
 
     private val FIRST_START_KEY = "FirstStart"
 
-    private lateinit var mNavigator: FragmentNavigation
+    @Inject(FragmentNavigation::class)
+    lateinit var mNavigator: FragmentNavigation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +28,6 @@ class MainActivity : BaseActivity() {
 
     override fun onBackPressed() {
         mNavigator.onBackPressed()
-    }
-
-    override fun injectModules() {
-        mNavigator = ModuleInjector.getModule(FragmentNavigation::class.java)
     }
 
 }
