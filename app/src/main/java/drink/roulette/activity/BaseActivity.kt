@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
-import drink.roulette.utility.moduleInjector.Module
 import drink.roulette.utility.moduleInjector.ModuleInjector
 
-abstract class BaseActivity : AppCompatActivity(), Module {
+abstract class BaseActivity : AppCompatActivity() {
 
     private var mIsInstanceStateSaved: Boolean = true
 

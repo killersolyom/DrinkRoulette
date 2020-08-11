@@ -4,14 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import drink.roulette.R
 import drink.roulette.utility.FragmentNavigation
-import drink.roulette.utility.moduleInjector.InjectorAnnotation.Inject
-
+import drink.roulette.utility.moduleInjector.InjectModule
 
 class MainActivity : BaseActivity() {
 
     private val FIRST_START_KEY = "FirstStart"
 
-    @Inject(FragmentNavigation::class)
+    @InjectModule(FragmentNavigation::class)
     lateinit var mNavigator: FragmentNavigation
 
     override fun onCreate(savedInstanceState: Bundle?) {

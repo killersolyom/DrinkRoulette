@@ -6,11 +6,10 @@ import drink.roulette.R
 import drink.roulette.activity.BaseActivity
 import drink.roulette.fragment.BaseFragment
 import drink.roulette.fragment.HomeFragment
-import drink.roulette.utility.moduleInjector.Module
 import kotlin.system.exitProcess
 
 
-abstract class BaseNavigation(activity: BaseActivity) : Module {
+abstract class BaseNavigation(activity: BaseActivity) {
 
     private var mFragmentManager: FragmentManager = activity.supportFragmentManager
     private var mActivity = activity

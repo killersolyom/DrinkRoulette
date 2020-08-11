@@ -2,10 +2,8 @@ package drink.roulette.utility.baseUtils
 
 import android.content.SharedPreferences
 import drink.roulette.activity.BaseActivity
-import drink.roulette.utility.moduleInjector.Module
 
-
-abstract class BaseDataManager(activity: BaseActivity) : Module {
+abstract class BaseDataManager(activity: BaseActivity) {
 
     private var mPreference: SharedPreferences =
         activity.getSharedPreferences(activity.applicationContext.packageName, 0)

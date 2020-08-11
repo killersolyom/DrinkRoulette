@@ -6,25 +6,36 @@ import drink.roulette.utility.FragmentNavigation
 import drink.roulette.utility.QuestionManager
 
 class ModuleInjector {
-
     internal companion object {
         @JvmStatic
-        private lateinit var mModuleMap: HashMap<Class<*>, Module>
 
-        fun <Type> getModule(type: Class<Type>): Type {
-            return type.cast(mModuleMap[type])!!
+        private lateinit var mModuleMap: HashMap<Class<*>, Any>
+
+        private fun <Type> getModule(type: Class<Type>): Type? {
+            val item = mModuleMap[type]
+            if (item != null) {
+                if (item::class.java == type) {
+                    return type.cast(item)
+                }
+            }
+
+            return null
         }
 
         fun inject(target: Any) {
-            var targetClass = target::class.java
-            targetClass.fields.forEach {
-                var field = it.getAnnotation(InjectorAnnotation.Inject::class.java)
+            (target::class.java).fields.forEach {
+                val field = it.getAnnotation(InjectModule::class.java)
                 if (field != null) {
-                    var asd = getModule(field.value.java)
-                    it.isAccessible = true
-                    it.set(target, asd)
+                    val module = getModule(field.value.java)
+                    if (module != null) {
+                        it.set(target, module)
+                    }
                 }
             }
+        }
+
+        fun destroy() {
+            mModuleMap.clear()
         }
     }
 
@@ -36,9 +47,8 @@ class ModuleInjector {
         addModule(QuestionManager(activity))
     }
 
-    private fun addModule(module: Module) {
+    private fun addModule(module: Any) {
         mModuleMap[module::class.java] = module
     }
-
 
 }
