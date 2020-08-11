@@ -36,10 +36,10 @@ class HomeFragment : BaseFragment(), CircleLayout.OnItemClickListener {
 
     override fun onItemClick(view: View) {
         when (view.id) {
-            R.id.home_start -> mNavigator?.showPlayerInputFragment()
-            R.id.home_info -> mNavigator?.showMoreFragment()
-            R.id.home_settings -> mNavigator?.showSettingsFragment()
-            R.id.home_exit -> mNavigator?.exit()
+            R.id.home_start -> mNavigator.showPlayerInputFragment()
+            R.id.home_info -> mNavigator.showMoreFragment()
+            R.id.home_settings -> mNavigator.showSettingsFragment()
+            R.id.home_exit -> mNavigator.exit()
         }
     }
 

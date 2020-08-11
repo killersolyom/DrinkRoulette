@@ -11,7 +11,7 @@ class MainActivity : BaseActivity() {
 
     private val FIRST_START_KEY = "FirstStart"
 
-    private var mNavigator: FragmentNavigation? = null
+    private lateinit var mNavigator: FragmentNavigation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,13 +20,13 @@ class MainActivity : BaseActivity() {
 
     override fun handleIntentEvents(intent: Intent) {
         if (!intent.getBooleanExtra(FIRST_START_KEY, false)) {
-            mNavigator?.showHomeFragment()
+            mNavigator.showHomeFragment()
             intent.putExtra(FIRST_START_KEY, true)
         }
     }
 
     override fun onBackPressed() {
-        mNavigator?.onBackPressed()
+        mNavigator.onBackPressed()
     }
 
     override fun injectModules() {
