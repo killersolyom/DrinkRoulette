@@ -1,0 +1,73 @@
+{
+  "QUESTIONS": [
+    {
+      "TYPE": "SIMPLE_QUESTION_FOR_ALL",
+      "QUESTION_GROUP": [
+        {
+          "ID": 1,
+          "QUESTION": "Mi a szar 1?",
+          "ANSWER": "Igen"
+        },
+        {
+          "ID": 2,
+          "QUESTION": "Mi a szar 2?",
+          "ANSWER": "Igen"
+        }
+      ]
+    },
+    {
+      "TYPE": "PLAYER_DEDICATED_QUESTION",
+      "QUESTION_GROUP": [
+        {
+          "ID": 1,
+          "QUESTION": "Mi a szar 3?",
+          "ANSWER": "Igen"
+        },
+        {
+          "ID": 2,
+          "QUESTION": "Mi a szar 4?",
+          "ANSWER": "Igen"
+        }
+      ]
+    },
+    {
+      "TYPE": "TWO_PLAYER_DEDICATED_CHALLENGE",
+      "QUESTION_GROUP": [
+        {
+          "ID": 1,
+          "QUESTION": "Mi a szar 3?"
+        },
+        {
+          "ID": 2,
+          "QUESTION": "Mi a szar 4?"
+        }
+      ]
+    },
+    {
+      "TYPE": "PLAYER_DEDICATED_CHALLENGE",
+      "QUESTION_GROUP": [
+        {
+          "ID": 1,
+          "QUESTION": "fussá"
+        },
+        {
+          "ID": 2,
+          "QUESTION": "menekülj"
+        }
+      ]
+    },
+    {
+      "TYPE": "CHALLENGE_FOR_ALL",
+      "QUESTION_GROUP": [
+        {
+          "ID": 1,
+          "QUESTION": "fussá"
+        },
+        {
+          "ID": 2,
+          "QUESTION": "menekülj"
+        }
+      ]
+    }
+  ]
+}
