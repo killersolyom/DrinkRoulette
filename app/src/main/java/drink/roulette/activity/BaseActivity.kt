@@ -14,7 +14,7 @@ abstract class BaseActivity : AppCompatActivity(), Module {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mIsInstanceStateSaved = false
-        ModuleInjector.initModules(this)
+        ModuleInjector().initModules(this)
         injectModules()
         handleIntentEvents(intent)
     }
@@ -22,7 +22,6 @@ abstract class BaseActivity : AppCompatActivity(), Module {
     abstract fun handleIntentEvents(intent: Intent)
 
     protected open fun injectModules() {
-
     }
 
     override fun onStart() {

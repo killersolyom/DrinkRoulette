@@ -6,8 +6,6 @@ import butterknife.BindView
 import com.bumptech.glide.Glide
 import com.szugyi.circlemenu.view.CircleLayout
 import drink.roulette.R
-import drink.roulette.utility.FragmentNavigation
-import drink.roulette.utility.moduleInjector.ModuleInjector
 
 
 class HomeFragment : BaseFragment(), CircleLayout.OnItemClickListener {
@@ -20,9 +18,6 @@ class HomeFragment : BaseFragment(), CircleLayout.OnItemClickListener {
 
     @BindView(R.id.bottle_image_2)
     lateinit var mSecondImage: ImageView
-
-    private val mNavigator: FragmentNavigation? =
-        ModuleInjector.getModule(FragmentNavigation::class.java)
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home

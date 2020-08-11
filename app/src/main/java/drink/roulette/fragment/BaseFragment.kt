@@ -8,11 +8,17 @@ import androidx.fragment.app.Fragment
 import butterknife.ButterKnife
 import drink.roulette.communication.EventListener
 import drink.roulette.model.event.Event
+import drink.roulette.utility.FragmentNavigation
+import drink.roulette.utility.moduleInjector.ModuleInjector
 
 abstract class BaseFragment : Fragment(), EventListener {
 
     val TAG = this.javaClass.canonicalName
-    internal lateinit var mView: View
+
+    private lateinit var mView: View
+
+    internal val mNavigator: FragmentNavigation? =
+        ModuleInjector.getModule(FragmentNavigation::class.java)
 
     override fun onCreateView(inflanter: LayoutInflater, container: ViewGroup?, b: Bundle?): View? {
         if (view == null) {

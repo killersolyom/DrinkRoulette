@@ -7,22 +7,22 @@ import drink.roulette.utility.QuestionManager
 
 class ModuleInjector {
 
+    fun initModules(activity: BaseActivity) {
+        mModuleMap = HashMap()
+        addModule(activity)
+        addModule(FragmentNavigation(activity))
+        addModule(DataManager(activity))
+        addModule(QuestionManager(activity))
+    }
+
+    private fun addModule(module: Module) {
+        mModuleMap[module::class.java.canonicalName] = module
+    }
+
     internal companion object {
         @JvmStatic
 
         private lateinit var mModuleMap: HashMap<String?, Module>
-
-        fun initModules(activity: BaseActivity) {
-            mModuleMap = HashMap()
-            addModule(activity)
-            addModule(FragmentNavigation(activity))
-            addModule(DataManager(activity))
-            addModule(QuestionManager(activity))
-        }
-
-        private fun addModule(module: Module) {
-            mModuleMap[module::class.java.canonicalName] = module
-        }
 
         fun <T : Module?> getModule(module: Class<T>): T? {
             return mModuleMap[module.canonicalName] as T
