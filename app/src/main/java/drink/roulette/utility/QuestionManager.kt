@@ -2,19 +2,15 @@ package drink.roulette.utility
 
 import android.content.Context
 import drink.roulette.data.JsonDataParser
+import drink.roulette.utility.moduleInjector.Module
 
-class QuestionManager {
+class QuestionManager(mContext: Context) : Module {
 
-    internal companion object {
-        @JvmStatic
+    private val mDataParser: JsonDataParser = JsonDataParser()
 
-        // Data Parser
-        private val dataParser: JsonDataParser = JsonDataParser()
-
-        fun initialize(context: Context) {
-            dataParser.parseJson(context)
-        }
-
+    init {
+        mDataParser.parseJson(mContext)
     }
+
 
 }
