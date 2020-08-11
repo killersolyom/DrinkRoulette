@@ -11,25 +11,11 @@ class ModuleInjector {
 
         private lateinit var mModuleMap: HashMap<Class<*>, Any>
 
-        private fun <Type> getModule(type: Class<Type>): Type? {
-            val item = mModuleMap[type]
-            if (item != null) {
-                if (item::class.java == type) {
-                    return type.cast(item)
-                }
-            }
-
-            return null
-        }
-
         fun inject(target: Any) {
             (target::class.java).fields.forEach {
                 val field = it.getAnnotation(InjectModule::class.java)
                 if (field != null) {
-                    val module = getModule(field.value.java)
-                    if (module != null) {
-                        it.set(target, module)
-                    }
+                    it.set(target, mModuleMap[field.value.java])
                 }
             }
         }
