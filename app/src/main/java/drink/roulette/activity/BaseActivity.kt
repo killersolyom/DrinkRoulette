@@ -23,7 +23,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun getModules(): Array<Any> {
         return arrayOf(
-            this,
             FragmentNavigation(this),
             DataManager(this),
             QuestionManager(this)
