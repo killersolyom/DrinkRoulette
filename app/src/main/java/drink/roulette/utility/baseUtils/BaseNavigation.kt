@@ -4,7 +4,6 @@ import androidx.fragment.app.FragmentManager
 import drink.roulette.R
 import drink.roulette.activity.BaseActivity
 import drink.roulette.fragment.BaseFragment
-import drink.roulette.fragment.HomeFragment
 import kotlin.system.exitProcess
 
 
@@ -23,7 +22,7 @@ abstract class BaseNavigation(activity: BaseActivity) {
         }
     }
 
-    private fun getTopFragment(): BaseFragment? {
+    internal fun getTopFragment(): BaseFragment? {
         mFragmentManager.fragments.forEach { if (it is BaseFragment && it.isVisible) return it }
         return null
     }
@@ -42,9 +41,7 @@ abstract class BaseNavigation(activity: BaseActivity) {
         if (shouldExit()) exit() else popBackStack()
     }
 
-    private fun shouldExit(): Boolean {
-        return getTopFragment() is HomeFragment
-    }
+    internal abstract fun shouldExit(): Boolean
 
     fun exit() {
         clearBackStack(true)

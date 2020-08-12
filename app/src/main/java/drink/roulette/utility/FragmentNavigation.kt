@@ -26,4 +26,8 @@ class FragmentNavigation(activity: BaseActivity) : BaseNavigation(activity) {
         showFragment(SettingsFragment())
     }
 
+    override fun shouldExit(): Boolean {
+        return getTopFragment() is HomeFragment
+    }
+
 }
