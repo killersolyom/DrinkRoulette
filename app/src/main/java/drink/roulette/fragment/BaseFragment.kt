@@ -18,7 +18,7 @@ abstract class BaseFragment : Fragment(), EventListener {
 
     private lateinit var mView: View
 
-    @InjectModule(FragmentNavigation::class)
+    @InjectModule
     lateinit var mNavigator: FragmentNavigation
 
     override fun onCreateView(inflanter: LayoutInflater, container: ViewGroup?, b: Bundle?): View? {

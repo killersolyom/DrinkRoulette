@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
+import drink.roulette.utility.DataManager
+import drink.roulette.utility.FragmentNavigation
+import drink.roulette.utility.QuestionManager
 import drink.roulette.utility.moduleInjector.ModuleInjector
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -13,9 +16,18 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mIsInstanceStateSaved = false
-        ModuleInjector().initModules(this)
+        ModuleInjector().initModules(getModules())
         ModuleInjector.inject(this)
         handleIntentEvents(intent)
+    }
+
+    private fun getModules(): Array<Any> {
+        return arrayOf(
+            this,
+            FragmentNavigation(this),
+            DataManager(this),
+            QuestionManager(this)
+        )
     }
 
     abstract fun handleIntentEvents(intent: Intent)
@@ -28,6 +40,11 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         mIsInstanceStateSaved = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ModuleInjector().destroy()
     }
 
     override fun onResume() {

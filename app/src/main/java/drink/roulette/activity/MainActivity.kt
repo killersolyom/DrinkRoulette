@@ -10,7 +10,7 @@ class MainActivity : BaseActivity() {
 
     private val FIRST_START_KEY = "FirstStart"
 
-    @InjectModule(FragmentNavigation::class)
+    @InjectModule
     lateinit var mNavigator: FragmentNavigation
 
     override fun onCreate(savedInstanceState: Bundle?) {
