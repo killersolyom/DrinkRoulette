@@ -2,6 +2,7 @@ package drink.roulette.model.viewHolderItem
 
 import drink.roulette.model.BaseItem
 import drink.roulette.viewHolder.ViewType
+import java.util.*
 
 class PlayerNameItem(private var mName: String) : BaseItem() {
 
@@ -14,4 +15,11 @@ class PlayerNameItem(private var mName: String) : BaseItem() {
         return mName
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (other is PlayerNameItem) {
+            return Objects.equals(this.mName, other.getName())
+        }
+
+        return false
+    }
 }

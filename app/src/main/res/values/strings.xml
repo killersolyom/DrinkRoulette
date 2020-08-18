@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">DrinkRoulette</string>
 
+    //player input fragment
+    <string name="name_already_contains">Ez az alkoholista már szerepel a listán!</string>
+    <string name="name_is_empty">Szellemek nem játszhatnak a játékkal vaze!</string>
+    <string name="name_add_description">Csak olyan emberek neveit adhatod meg akik főállásban alkoholisták és másodállásban alkoholimádók! </string>
+    <string name="name_list_is_empty">Senki sincs a listán! Inni mégis ki fog?</string>
+    <string name="name_list_one_player">Most komolyan egyedül akarsz berúgni?</string>
+
 </resources>

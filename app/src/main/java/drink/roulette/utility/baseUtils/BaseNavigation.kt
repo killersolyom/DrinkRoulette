@@ -12,7 +12,7 @@ abstract class BaseNavigation(activity: BaseActivity) {
     private var mFragmentManager: FragmentManager = activity.supportFragmentManager
     private var mActivity = activity
 
-    internal fun showFragment(fragment: BaseFragment) {
+    protected fun showFragment(fragment: BaseFragment) {
         if (!mActivity.isInstanceStateSaved()) {
             mFragmentManager
                 .beginTransaction()

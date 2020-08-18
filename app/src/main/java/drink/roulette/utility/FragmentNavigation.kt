@@ -5,13 +5,19 @@ import drink.roulette.fragment.HomeFragment
 import drink.roulette.fragment.MoreInfoFragment
 import drink.roulette.fragment.PlayerInputFragment
 import drink.roulette.fragment.SettingsFragment
+import drink.roulette.model.viewHolderItem.PlayerNameItem
 import drink.roulette.utility.baseUtils.BaseNavigation
+import java.util.*
 
 
 class FragmentNavigation(activity: BaseActivity) : BaseNavigation(activity) {
 
     fun showHomeFragment() {
         showFragment(HomeFragment())
+    }
+
+    fun showQuestionFragment(itemList: ArrayList<PlayerNameItem>) {
+
     }
 
     fun showPlayerInputFragment() {

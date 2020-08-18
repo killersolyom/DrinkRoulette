@@ -20,21 +20,39 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="casual"
+        android:textAlignment="center"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@id/add_player_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.55"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toEndOf="@id/names_recycler_view"
         app:layout_constraintWidth_percent="0.5" />
+
+    <View
+        android:id="@+id/done_button"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/play"
+        android:backgroundTint="#FF3D00"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/name_input_view"
         android:layout_width="0dp"
         android:layout_height="45dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="45dp"
-        android:paddingStart="0dp"
+        android:background="@drawable/rounded_corner_image"
+        android:paddingStart="20dp"
         android:paddingEnd="50dp"
+        android:textCursorDrawable="@drawable/text_cursor_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.5" />
