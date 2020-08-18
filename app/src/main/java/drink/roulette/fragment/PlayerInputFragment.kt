@@ -1,6 +1,7 @@
 package drink.roulette.fragment
 
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import butterknife.BindView
 import drink.roulette.R
@@ -22,6 +23,9 @@ class PlayerInputFragment : BaseFragment() {
     @BindView(R.id.add_player_button)
     lateinit var mAddButton: View
 
+    @BindView(R.id.name_input_view)
+    lateinit var mNameInputView: EditText
+
     override fun getLayoutId(): Int {
         return R.layout.fragment_player_input
     }
@@ -32,8 +36,11 @@ class PlayerInputFragment : BaseFragment() {
 
     override fun onInitializationFinished() {
         mPlayerRecyclerView.setAdapter(mItemAdapter)
-        mAddButton.setOnClickListener { mItemAdapter.addItem(PlayerNameItem("Player")) }
+        mAddButton.setOnClickListener { onAddButtonClicked() }
     }
 
+    private fun onAddButtonClicked() {
+        mItemAdapter.addItem(PlayerNameItem(mNameInputView.text.toString()))
+    }
 
 }

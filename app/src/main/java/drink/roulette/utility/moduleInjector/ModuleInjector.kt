@@ -8,7 +8,7 @@ class ModuleInjector {
 
         fun inject(target: Any) {
             (target::class.java).fields
-                .filter { filed -> filed.getAnnotation(InjectModule::class.java) != null }
+                .filter { filed -> filed.isAnnotationPresent(InjectModule::class.java) }
                 .forEach { item -> item.set(target, mModuleMap[item.type]) }
         }
     }
