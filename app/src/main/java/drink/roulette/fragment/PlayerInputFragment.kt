@@ -54,7 +54,16 @@ class PlayerInputFragment : BaseFragment() {
         when (mItemAdapter.itemList.size) {
             0 -> mNotificationManager.showToast(R.string.name_list_is_empty, false)
             1 -> mNotificationManager.showToast(R.string.name_list_one_player, false)
-            else -> mNavigator.showQuestionFragment(mItemAdapter.itemList)
+            else ->
+                if (TextUtils.isEmpty(mNameInputView.text.trim())) {
+                    mNavigator.showQuestionFragment(mItemAdapter.itemList)
+                } else {
+                    mNotificationManager.showToast(
+                        mNameInputView.text.trim().toString()
+                                + getString(R.string.name_not_drinking_player), false
+                    )
+                }
+
         }
     }
 
