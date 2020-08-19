@@ -5,35 +5,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import butterknife.ButterKnife
 import drink.roulette.listener.EventListener
 import drink.roulette.model.event.Event
 import drink.roulette.utility.FragmentNavigation
-import drink.roulette.utility.moduleInjector.InjectModule
-import drink.roulette.utility.moduleInjector.ModuleInjector
+import drink.roulette.utility.ModuleInjector
 
 abstract class BaseFragment : Fragment(), EventListener {
 
     val TAG = this.javaClass.canonicalName
 
-    private lateinit var mView: View
+    protected lateinit var mNavigator: FragmentNavigation
 
-    @InjectModule
-    lateinit var mNavigator: FragmentNavigation
+    private lateinit var mView: View
 
     override fun onCreateView(inflanter: LayoutInflater, container: ViewGroup?, b: Bundle?): View? {
         if (view == null) {
             mView = inflanter.inflate(getLayoutId(), container, false)
         }
         initComponents()
-        ButterKnife.bind(this, mView)
-        ModuleInjector.inject(this)
+        findView(mView)
+        injectModules()
         return mView
     }
 
     protected abstract fun getLayoutId(): Int
 
     protected open fun initComponents() {}
+
+    protected abstract fun findView(view: View)
+
+    protected open fun injectModules() {
+        mNavigator = ModuleInjector.get(FragmentNavigation::class.java)
+    }
 
     protected abstract fun onInitializationFinished()
 

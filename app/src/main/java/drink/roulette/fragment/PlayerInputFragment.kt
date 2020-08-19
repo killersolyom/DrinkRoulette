@@ -4,39 +4,41 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import butterknife.BindView
 import drink.roulette.R
 import drink.roulette.adapter.ItemAdapter
 import drink.roulette.customView.ParchmentView
 import drink.roulette.model.viewHolderItem.PlayerNameItem
+import drink.roulette.utility.ModuleInjector
 import drink.roulette.utility.NotificationManager
-import drink.roulette.utility.moduleInjector.InjectModule
 
 
 class PlayerInputFragment : BaseFragment() {
 
+    private lateinit var mNotification: NotificationManager
+
     private lateinit var mItemAdapter: ItemAdapter<PlayerNameItem>
 
-    @InjectModule
-    lateinit var mNotificationManager: NotificationManager
-
-    @BindView(R.id.names_recycler_view)
     lateinit var mPlayerRecyclerView: ParchmentView<PlayerNameItem>
-
-    @BindView(R.id.description_text)
     lateinit var mDescriptionText: TextView
-
-    @BindView(R.id.add_player_button)
-    lateinit var mAddButton: View
-
-    @BindView(R.id.name_input_view)
     lateinit var mNameInputView: EditText
-
-    @BindView(R.id.done_button)
+    lateinit var mAddButton: View
     lateinit var mDoneButton: View
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_player_input
+    }
+
+    override fun injectModules() {
+        super.injectModules()
+        mNotification = ModuleInjector.get(NotificationManager::class.java)
+    }
+
+    override fun findView(view: View) {
+        mPlayerRecyclerView = view.findViewById(R.id.names_recycler_view)
+        mDescriptionText = view.findViewById(R.id.description_text)
+        mAddButton = view.findViewById(R.id.add_player_button)
+        mNameInputView = view.findViewById(R.id.name_input_view)
+        mDoneButton = view.findViewById(R.id.done_button)
     }
 
     override fun initComponents() {
@@ -52,37 +54,33 @@ class PlayerInputFragment : BaseFragment() {
 
     private fun onDoneButtonClicked() {
         when (mItemAdapter.itemList.size) {
-            0 -> mNotificationManager.showToast(R.string.name_list_is_empty, false)
-            1 -> mNotificationManager.showToast(R.string.name_list_one_player, false)
-            else ->
-                if (TextUtils.isEmpty(mNameInputView.text.trim())) {
+            0 -> mNotification.showToast(R.string.name_list_is_empty)
+            1 -> mNotification.showToast(R.string.name_list_one_player)
+            else -> {
+                val text = mNameInputView.text.trim().toString()
+                if (TextUtils.isEmpty(text)) {
                     mNavigator.showQuestionFragment(mItemAdapter.itemList)
                 } else {
-                    mNotificationManager.showToast(
-                        mNameInputView.text.trim().toString()
-                                + getString(R.string.name_not_drinking_player), false
-                    )
+                    mNotification.showToast(text + getString(R.string.name_not_drinking_player))
                 }
-
+            }
         }
     }
 
     private fun onAddButtonClicked() {
-        val text = mNameInputView.text
+        val text = mNameInputView.text.trim().toString()
 
         if (TextUtils.isEmpty(text)) {
-            mNotificationManager.showToast(R.string.name_is_empty, false)
+            mNotification.showToast(R.string.name_is_empty)
             return
         }
 
-        val newName = PlayerNameItem(text.trim().toString())
-        if (mItemAdapter.itemList.contains(newName)) {
-            mNotificationManager.showToast(R.string.name_already_contains, false)
+        if (mItemAdapter.itemList.find { item -> item.equals(text) } != null) {
+            mNotification.showToast(R.string.name_already_contains)
             return
         }
 
-        mItemAdapter.addItem(newName)
-
+        mItemAdapter.addItem(PlayerNameItem(text))
         mNameInputView.text = null
     }
 

@@ -20,6 +20,10 @@ class PlayerNameItem(private var mName: String) : BaseItem() {
             return Objects.equals(this.mName, other.getName())
         }
 
+        if (other is String) {
+            return Objects.equals(this.mName, other)
+        }
+
         return false
     }
 }

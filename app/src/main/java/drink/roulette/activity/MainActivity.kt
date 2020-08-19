@@ -3,19 +3,16 @@ package drink.roulette.activity
 import android.content.Intent
 import android.view.View
 import android.widget.FrameLayout
-import butterknife.BindView
 import drink.roulette.R
 import drink.roulette.utility.FragmentNavigation
-import drink.roulette.utility.moduleInjector.InjectModule
+import drink.roulette.utility.ModuleInjector
 
 class MainActivity : BaseActivity() {
 
     private val FIRST_START_KEY = "FirstStart"
 
-    @BindView(R.id.fragment_container)
     lateinit var mLayout: FrameLayout
 
-    @InjectModule
     lateinit var mNavigator: FragmentNavigation
 
     override fun handleIntentEvents(intent: Intent) {
@@ -25,8 +22,16 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    override fun injectModules() {
+        mNavigator = ModuleInjector.get(FragmentNavigation::class.java)
+    }
+
     override fun getLayoutId(): Int {
         return R.layout.activity_main
+    }
+
+    override fun findView() {
+        mLayout = findViewById(R.id.fragment_container)
     }
 
     override fun getView(): View {

@@ -13,6 +13,7 @@ class NotificationManager(baseActivity: BaseActivity) {
     private var mDefaultColor = baseActivity.getColor(R.color.colorDarkGreen)
     private var mErrorColor = baseActivity.getColor(R.color.colorRed)
 
+    // SnackBar
     fun showSnackBar(message: String, isError: Boolean) {
         Snackbar
             .make(mView, message, Snackbar.LENGTH_INDEFINITE)
@@ -25,6 +26,8 @@ class NotificationManager(baseActivity: BaseActivity) {
         showSnackBar(mView.context.getString(textId), isError)
     }
 
+
+    // Toast
     fun showToast(message: String, longDuration: Boolean) {
         Toast.makeText(
             mView.context, message, if (longDuration) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
@@ -33,6 +36,14 @@ class NotificationManager(baseActivity: BaseActivity) {
 
     fun showToast(textId: Int, longDuration: Boolean) {
         showToast(mView.context.getString(textId), longDuration)
+    }
+
+    fun showToast(textId: Int) {
+        showToast(mView.context.getString(textId), false)
+    }
+
+    fun showToast(text: String) {
+        showToast(text, false)
     }
 
 }

@@ -6,22 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
-import butterknife.ButterKnife
 
 
 abstract class BaseCustomView<Item>(context: Context, attrs: AttributeSet?) :
     ConstraintLayout(context, attrs) {
-    protected lateinit var mItemView: View
+    private lateinit var mItemView: View
 
     private fun inflateView(context: Context) {
-        mItemView = LayoutInflater.from(context).inflate(getLayoutId(), this, true);
+        mItemView = LayoutInflater.from(context).inflate(getLayoutId(), this, true)
     }
 
     protected abstract fun getLayoutId(): Int
 
     private fun initView() {
-        ButterKnife.bind(this, mItemView)
+        findView(mItemView)
     }
+
+    protected abstract fun findView(view: View)
 
     protected abstract fun onInitializationFinished()
 

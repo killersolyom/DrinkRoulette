@@ -2,26 +2,19 @@ package drink.roulette.viewHolder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import butterknife.ButterKnife
 
+abstract class BaseViewHolder<GenericItem> internal constructor(view: View) : ViewHolder(view) {
 
-abstract class BaseViewHolder<GenericItem> internal constructor(itemView: View) :
-    ViewHolder(itemView) {
-
-    private var mItemView: View
-
-    private fun findView(itemView: View) {
-        ButterKnife.bind(this, itemView)
+    init {
+        findView(view)
     }
 
-    abstract fun bindItem(genericItem: GenericItem)
+    private var mItemView: View = view
+
+    protected abstract fun findView(view: View)
+
+    abstract fun bindItem(item: GenericItem)
 
     abstract fun unBindItem()
 
-    protected fun onItemClicked(genericItem: GenericItem) {}
-
-    init {
-        findView(itemView)
-        mItemView = itemView
-    }
 }

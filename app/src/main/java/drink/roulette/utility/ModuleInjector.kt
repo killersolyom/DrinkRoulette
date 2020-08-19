@@ -1,4 +1,5 @@
-package drink.roulette.utility.moduleInjector
+package drink.roulette.utility
+
 
 class ModuleInjector {
     internal companion object {
@@ -6,10 +7,8 @@ class ModuleInjector {
 
         private var mModuleMap: HashMap<Class<*>, Any> = HashMap()
 
-        fun inject(target: Any) {
-            (target::class.java).fields
-                .filter { filed -> filed.isAnnotationPresent(InjectModule::class.java) }
-                .forEach { item -> item.set(target, mModuleMap[item.type]) }
+        fun <Type> get(module: Class<Type>): Type {
+            return mModuleMap[module] as Type
         }
     }
 

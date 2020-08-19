@@ -5,12 +5,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import butterknife.ButterKnife
-import drink.roulette.utility.DataManager
-import drink.roulette.utility.FragmentNavigation
-import drink.roulette.utility.NotificationManager
-import drink.roulette.utility.QuestionManager
-import drink.roulette.utility.moduleInjector.ModuleInjector
+import drink.roulette.utility.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -20,9 +15,9 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
         mIsInstanceStateSaved = false
-        ButterKnife.bind(this)
+        findView()
         ModuleInjector().initModules(getModules())
-        ModuleInjector.inject(this)
+        injectModules()
         handleIntentEvents(intent)
     }
 
@@ -38,6 +33,10 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun handleIntentEvents(intent: Intent)
 
     protected abstract fun getLayoutId(): Int
+
+    abstract fun findView()
+
+    abstract fun injectModules()
 
     abstract fun getView(): View
 
