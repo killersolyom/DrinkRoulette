@@ -8,5 +8,7 @@
     <string name="name_list_is_empty">Senki sincs a listán! Inni mégis ki fog?</string>
     <string name="name_list_one_player">Most komolyan egyedül akarsz berúgni?</string>
     <string name="name_not_drinking_player">\u0020 nem is fog inni vagy mi?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

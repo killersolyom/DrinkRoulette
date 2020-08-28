@@ -13,6 +13,7 @@ abstract class BaseNavigation(activity: BaseActivity) {
     private var mActivity = activity
 
     protected fun showFragment(fragment: BaseFragment) {
+        beforeFragmentLoaded(fragment)
         if (!mActivity.isInstanceStateSaved()) {
             mFragmentManager
                 .beginTransaction()
@@ -22,16 +23,24 @@ abstract class BaseNavigation(activity: BaseActivity) {
         }
     }
 
-    internal fun getTopFragment(): BaseFragment? {
+    protected abstract fun beforeFragmentLoaded(newFragment: BaseFragment)
+
+    protected abstract fun shouldExit(): Boolean
+
+    protected fun getTopFragment(): BaseFragment? {
         mFragmentManager.fragments.forEach { if (it is BaseFragment && it.isVisible) return it }
         return null
+    }
+
+    protected fun isEmpty(): Boolean {
+        return getTopFragment() == null
     }
 
     private fun popBackStack() {
         mFragmentManager.popBackStack()
     }
 
-    private fun clearBackStack(clearAll: Boolean) {
+    protected fun clearBackStack(clearAll: Boolean) {
         for (i in (if (clearAll) 0 else 1) until mFragmentManager.backStackEntryCount) {
             mFragmentManager.popBackStack()
         }
@@ -40,8 +49,6 @@ abstract class BaseNavigation(activity: BaseActivity) {
     fun onBackPressed() {
         if (shouldExit()) exit() else popBackStack()
     }
-
-    internal abstract fun shouldExit(): Boolean
 
     fun exit() {
         clearBackStack(true)

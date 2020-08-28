@@ -1,13 +1,9 @@
 package drink.roulette.utility
 
 import drink.roulette.activity.BaseActivity
-import drink.roulette.fragment.HomeFragment
-import drink.roulette.fragment.MoreInfoFragment
-import drink.roulette.fragment.PlayerInputFragment
-import drink.roulette.fragment.SettingsFragment
+import drink.roulette.fragment.*
 import drink.roulette.model.viewHolderItem.PlayerNameItem
 import drink.roulette.utility.baseUtils.BaseNavigation
-import java.util.*
 
 
 class FragmentNavigation(activity: BaseActivity) : BaseNavigation(activity) {
@@ -16,8 +12,8 @@ class FragmentNavigation(activity: BaseActivity) : BaseNavigation(activity) {
         showFragment(HomeFragment())
     }
 
-    fun showQuestionFragment(itemList: ArrayList<PlayerNameItem>) {
-
+    fun showQuestionFragment(playerList: ArrayList<PlayerNameItem>) {
+        showFragment(QuestionFragment.newInstance(playerList))
     }
 
     fun showPlayerInputFragment() {
@@ -32,8 +28,18 @@ class FragmentNavigation(activity: BaseActivity) : BaseNavigation(activity) {
         showFragment(SettingsFragment())
     }
 
+    override fun beforeFragmentLoaded(newFragment: BaseFragment) {
+        when (newFragment.javaClass) {
+            QuestionFragment::class.java, QuestionFragment::class.java -> clearBackStack(true)
+        }
+    }
+
     override fun shouldExit(): Boolean {
-        return getTopFragment() is HomeFragment
+        val topFragment = getTopFragment() ?: return true
+        return when (topFragment.javaClass) {
+            HomeFragment::class.java, QuestionFragment::class.java -> true
+            else -> false
+        }
     }
 
 }
