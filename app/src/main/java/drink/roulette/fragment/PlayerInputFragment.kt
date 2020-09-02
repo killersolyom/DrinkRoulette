@@ -16,8 +16,7 @@ class PlayerInputFragment : BaseFragment() {
 
     private lateinit var mNotification: NotificationManager
 
-    private lateinit var mItemAdapter: ItemAdapter<PlayerNameItem>
-
+    private lateinit var mNameAdapter: ItemAdapter<PlayerNameItem>
     lateinit var mPlayerRecyclerView: ParchmentView<PlayerNameItem>
     lateinit var mDescriptionText: TextView
     lateinit var mNameInputView: EditText
@@ -42,24 +41,24 @@ class PlayerInputFragment : BaseFragment() {
     }
 
     override fun initComponents() {
-        mItemAdapter = ItemAdapter()
+        mNameAdapter = ItemAdapter()
     }
 
     override fun onInitializationFinished() {
-        mPlayerRecyclerView.setAdapter(mItemAdapter)
+        mPlayerRecyclerView.setAdapter(mNameAdapter)
         mAddButton.setOnClickListener { onAddButtonClicked() }
         mDoneButton.setOnClickListener { onDoneButtonClicked() }
         mDescriptionText.setText(R.string.name_add_description)
     }
 
     private fun onDoneButtonClicked() {
-        when (mItemAdapter.itemList.size) {
+        when (mNameAdapter.mItemList.size) {
             0 -> mNotification.showToast(R.string.name_list_is_empty)
             1 -> mNotification.showToast(R.string.name_list_one_player)
             else -> {
                 val text = mNameInputView.text.trim().toString()
                 if (TextUtils.isEmpty(text)) {
-                    mNavigator.showQuestionFragment(mItemAdapter.itemList)
+                    mNavigator.showQuestionFragment(getPlayerNames())
                 } else {
                     mNotification.showToast(text + getString(R.string.name_not_drinking_player))
                 }
@@ -75,13 +74,19 @@ class PlayerInputFragment : BaseFragment() {
             return
         }
 
-        if (mItemAdapter.itemList.find { item -> item.equals(text) } != null) {
+        if (mNameAdapter.mItemList.find { item -> item.equals(text) } != null) {
             mNotification.showToast(R.string.name_already_contains)
             return
         }
 
-        mItemAdapter.addItem(PlayerNameItem(text))
+        mNameAdapter.addItem(PlayerNameItem(text))
         mNameInputView.text = null
+    }
+
+    private fun getPlayerNames(): ArrayList<String> {
+        val names = ArrayList<String>()
+        mNameAdapter.mItemList.forEach { names.add(it.getName()) }
+        return names
     }
 
 }

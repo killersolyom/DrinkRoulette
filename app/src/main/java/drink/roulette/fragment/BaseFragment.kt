@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import drink.roulette.listener.EventListener
 import drink.roulette.model.event.Event
@@ -25,6 +26,7 @@ abstract class BaseFragment : Fragment(), EventListener {
         initComponents()
         findView(mView)
         injectModules()
+        arguments?.let { loadArguments(it) }
         return mView
     }
 
@@ -34,8 +36,12 @@ abstract class BaseFragment : Fragment(), EventListener {
 
     protected abstract fun findView(view: View)
 
+    @CallSuper
     protected open fun injectModules() {
         mNavigator = ModuleInjector.get(FragmentNavigation::class.java)
+    }
+
+    protected open fun loadArguments(bundle: Bundle) {
     }
 
     protected abstract fun onInitializationFinished()

@@ -16,18 +16,19 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(getLayoutId())
         mIsInstanceStateSaved = false
         findView()
-        ModuleInjector().initModules(getModules())
+        initModules()
         injectModules()
         handleIntentEvents(intent)
     }
 
-    private fun getModules(): Array<Any> {
-        return arrayOf(
-            FragmentNavigation(this),
-            DataManager(this),
-            QuestionManager(this),
-            NotificationManager(this)
-        )
+    private fun initModules() {
+        val moduleInjector = ModuleInjector()
+
+        moduleInjector.addModule(NotificationManager(this))
+        moduleInjector.addModule(FragmentNavigation(this))
+        moduleInjector.addModule(DataManager(this))
+        moduleInjector.addModule(QuestionManager(this))
+        moduleInjector.addModule(BundleUtil())
     }
 
     abstract fun handleIntentEvents(intent: Intent)

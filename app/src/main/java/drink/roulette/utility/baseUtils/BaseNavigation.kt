@@ -1,21 +1,31 @@
 package drink.roulette.utility.baseUtils
 
-import androidx.fragment.app.FragmentManager
 import drink.roulette.R
 import drink.roulette.activity.BaseActivity
 import drink.roulette.fragment.BaseFragment
+import drink.roulette.utility.ModuleInjector
+import drink.roulette.utility.NotificationManager
 import kotlin.system.exitProcess
 
 
 abstract class BaseNavigation(activity: BaseActivity) {
 
-    private var mFragmentManager: FragmentManager = activity.supportFragmentManager
-    private var mActivity = activity
+    private var mActivity: BaseActivity = activity
+
+    private var mNotification: NotificationManager
+
+    private var mLastBackPressTime: Long = 0
+    private val mExitTimeLimit: Long = 350
+
+    init {
+        mLastBackPressTime = System.currentTimeMillis()
+        mNotification = ModuleInjector.get(NotificationManager::class.java)
+    }
 
     protected fun showFragment(fragment: BaseFragment) {
         beforeFragmentLoaded(fragment)
         if (!mActivity.isInstanceStateSaved()) {
-            mFragmentManager
+            mActivity.supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment, fragment.TAG)
                 .addToBackStack(fragment.TAG)
@@ -27,27 +37,46 @@ abstract class BaseNavigation(activity: BaseActivity) {
 
     protected abstract fun shouldExit(): Boolean
 
+    protected abstract fun shouldPop(): Boolean
+
     protected fun getTopFragment(): BaseFragment? {
-        mFragmentManager.fragments.forEach { if (it is BaseFragment && it.isVisible) return it }
+        mActivity.supportFragmentManager.fragments.forEach { if (it is BaseFragment && it.isVisible) return it }
         return null
     }
 
-    protected fun isEmpty(): Boolean {
-        return getTopFragment() == null
-    }
-
     private fun popBackStack() {
-        mFragmentManager.popBackStack()
+        mActivity.supportFragmentManager.popBackStack()
     }
 
     protected fun clearBackStack(clearAll: Boolean) {
-        for (i in (if (clearAll) 0 else 1) until mFragmentManager.backStackEntryCount) {
-            mFragmentManager.popBackStack()
+        for (i in (if (clearAll) 0 else 1) until mActivity.supportFragmentManager.backStackEntryCount) {
+            mActivity.supportFragmentManager.popBackStack()
         }
     }
 
     fun onBackPressed() {
-        if (shouldExit()) exit() else popBackStack()
+        if (shouldExit()) {
+            exit()
+            return
+        }
+
+        if (shouldPop()) {
+            popBackStack()
+            return
+        }
+
+        mNotification.showToast(R.string.press_again_to_exit)
+    }
+
+    protected fun isDoubleBackPressed(): Boolean {
+        val currentTime = System.currentTimeMillis()
+
+        if (currentTime - mLastBackPressTime <= mExitTimeLimit) {
+            return true
+        }
+
+        mLastBackPressTime = currentTime
+        return false
     }
 
     fun exit() {

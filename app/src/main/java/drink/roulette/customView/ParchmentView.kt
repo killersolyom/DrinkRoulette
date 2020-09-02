@@ -31,7 +31,6 @@ class ParchmentView<Item : BaseItem>(context: Context, attrs: AttributeSet?) :
 
     override fun onInitializationFinished() {
         mRecyclerView.layoutManager = LinearLayoutManager(context)
-        mRecyclerView.overScrollMode = View.OVER_SCROLL_NEVER
         Glide.with(this).load(R.drawable.parchment_background).into(mBackground)
         Glide.with(this).load(R.drawable.parchment_foreground).into(mForeground)
     }

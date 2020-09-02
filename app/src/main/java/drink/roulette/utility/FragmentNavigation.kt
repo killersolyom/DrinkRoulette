@@ -2,7 +2,6 @@ package drink.roulette.utility
 
 import drink.roulette.activity.BaseActivity
 import drink.roulette.fragment.*
-import drink.roulette.model.viewHolderItem.PlayerNameItem
 import drink.roulette.utility.baseUtils.BaseNavigation
 
 
@@ -12,7 +11,7 @@ class FragmentNavigation(activity: BaseActivity) : BaseNavigation(activity) {
         showFragment(HomeFragment())
     }
 
-    fun showQuestionFragment(playerList: ArrayList<PlayerNameItem>) {
+    fun showQuestionFragment(playerList: ArrayList<String>) {
         showFragment(QuestionFragment.newInstance(playerList))
     }
 
@@ -37,9 +36,17 @@ class FragmentNavigation(activity: BaseActivity) : BaseNavigation(activity) {
     override fun shouldExit(): Boolean {
         val topFragment = getTopFragment() ?: return true
         return when (topFragment.javaClass) {
-            HomeFragment::class.java, QuestionFragment::class.java -> true
+            HomeFragment::class.java -> true
+            QuestionFragment::class.java -> isDoubleBackPressed()
             else -> false
         }
     }
 
+    override fun shouldPop(): Boolean {
+        val topFragment = getTopFragment() ?: return true
+        return when (topFragment.javaClass) {
+            QuestionFragment::class.java -> false
+            else -> true
+        }
+    }
 }
