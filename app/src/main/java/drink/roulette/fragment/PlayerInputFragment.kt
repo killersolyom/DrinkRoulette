@@ -49,6 +49,10 @@ class PlayerInputFragment : BaseFragment() {
         mAddButton.setOnClickListener { onAddButtonClicked() }
         mDoneButton.setOnClickListener { onDoneButtonClicked() }
         mDescriptionText.setText(R.string.name_add_description)
+        // TODO remove this
+        mNameAdapter.addItem(PlayerNameItem("player1"))
+        mNameAdapter.addItem(PlayerNameItem("player2"))
+        mNameAdapter.addItem(PlayerNameItem("player3"))
     }
 
     private fun onDoneButtonClicked() {
