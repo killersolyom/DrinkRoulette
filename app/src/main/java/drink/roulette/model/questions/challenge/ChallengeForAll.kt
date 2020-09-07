@@ -5,6 +5,6 @@ import drink.roulette.viewHolder.ViewType
 class ChallengeForAll(id: Int, description: String) : BaseChallenge(id, description) {
 
     override fun getViewType(): ViewType {
-        return ViewType.TWO_PLAYER_CHALLENGE_TYPE
+        return ViewType.CHALLENGE_FOR_ALL_TYPE
     }
 }

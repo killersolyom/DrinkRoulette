@@ -2,17 +2,17 @@ package drink.roulette.model.questions.question
 
 import drink.roulette.model.questions.BaseDefaultQuestion
 
-abstract class BaseQuestionItem(id: Int, description: String, answer: String) :
-    BaseDefaultQuestion(id, description) {
+abstract class BaseQuestionItem(id: Int, question: String, answer: String) :
+    BaseDefaultQuestion(id, question) {
 
-    protected var mAnswer: String = answer
-
-    fun setAnswer(answer: String) {
-        mAnswer = answer
-    }
+    private var mAnswer: String = answer
 
     fun getAnswer(): String {
         return mAnswer
+    }
+
+    fun getQuestion(): String {
+        return mDescription
     }
 
 }

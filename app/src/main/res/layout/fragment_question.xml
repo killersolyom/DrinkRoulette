@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".fragment.QuestionFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/question_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never" />
+
     <View
         android:id="@+id/next_button"
         android:layout_width="75dp"
@@ -17,11 +23,5 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/question_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
