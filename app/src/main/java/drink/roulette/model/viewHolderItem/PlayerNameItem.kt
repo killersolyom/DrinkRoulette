@@ -1,10 +1,10 @@
 package drink.roulette.model.viewHolderItem
 
-import drink.roulette.model.BaseItem
+import drink.roulette.model.DefaultItem
 import drink.roulette.viewHolder.ViewType
 import java.util.*
 
-class PlayerNameItem(private var mName: String) : BaseItem() {
+class PlayerNameItem(private var mName: String) : DefaultItem() {
 
 
     override fun getViewType(): ViewType {

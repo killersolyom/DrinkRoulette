@@ -16,7 +16,7 @@ class LayoutSelector {
     companion object {
         @JvmStatic
 
-        fun getLayoutForItem(p: ViewGroup, viewType: Int): BaseViewHolder<*>? {
+        fun getLayoutForItem(p: ViewGroup, viewType: Int): DefaultViewHolder<*>? {
             when (viewType) {
                 PLAYER_NAME_ITEM.type ->
                     return PlayerNameViewHolder(inflate(p, R.layout.player_name_layout))
@@ -31,8 +31,7 @@ class LayoutSelector {
                 TWO_PLAYER_CHALLENGE_TYPE.type ->
                     return ChallengeForTwoPlayerHolder(inflate(p, R.layout.question_item_layout))
                 else ->
-                    //return BaseDefaultViewHolder(inflate(p, R.layout.default_layout))
-                    return null
+                    return DefaultViewHolder<Any>(inflate(p, R.layout.default_layout))
             }
         }
 

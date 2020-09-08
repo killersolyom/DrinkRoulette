@@ -5,7 +5,7 @@ import drink.roulette.R
 import drink.roulette.customView.PlayerNameView
 import drink.roulette.model.viewHolderItem.PlayerNameItem
 
-class PlayerNameViewHolder(itemView: View) : BaseViewHolder<PlayerNameItem>(itemView) {
+class PlayerNameViewHolder(itemView: View) : DefaultViewHolder<PlayerNameItem>(itemView) {
 
     lateinit var mPlayerNameView: PlayerNameView
 

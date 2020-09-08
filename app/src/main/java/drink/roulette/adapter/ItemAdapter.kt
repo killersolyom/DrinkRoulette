@@ -7,10 +7,6 @@ class ItemAdapter<Item : BaseItem> : BaseAdapter<Item>() {
 
     var mItemList = ArrayList<Item>()
 
-    override fun getItemViewType(position: Int): Int {
-        return mItemList[position].getViewType().type
-    }
-
     fun addItemList(itemList: ArrayList<Item>) {
         this.mItemList = itemList
     }

@@ -5,7 +5,7 @@ import android.widget.TextView
 import drink.roulette.R
 
 abstract class BaseChallengeQuestionHolder<Item>(itemView: View) :
-    BaseViewHolder<Item>(itemView) {
+    DefaultViewHolder<Item>(itemView) {
 
     lateinit var mDescriptionView: TextView
 

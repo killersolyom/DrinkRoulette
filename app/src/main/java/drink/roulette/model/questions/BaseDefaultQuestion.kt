@@ -1,8 +1,8 @@
 package drink.roulette.model.questions
 
-import drink.roulette.model.BaseItem
+import drink.roulette.model.DefaultItem
 
-abstract class BaseDefaultQuestion : BaseItem {
+abstract class BaseDefaultQuestion : DefaultItem {
 
     private var mId: Int = -1
     protected var mDescription: String = ""

@@ -1,6 +1,7 @@
 package drink.roulette.viewHolder
 
 enum class ViewType(val type: Int) {
+    DEFAULT_ITEM(-1),
     PLAYER_NAME_ITEM(0),
     TWO_PLAYER_CHALLENGE_TYPE(1),
     DEDICATED_PLAYER_CHALLENGE_TYPE(2),
