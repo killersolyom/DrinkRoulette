@@ -1,13 +1,14 @@
 package drink.roulette.model.questions.question
 
 import drink.roulette.model.questions.BaseDefaultQuestion
+import drink.roulette.model.questions.answer.BaseAnswer
 
 abstract class BaseQuestionItem(id: Int, question: String, answer: String) :
     BaseDefaultQuestion(id, question) {
 
-    private var mAnswer: String = answer
+    private var mAnswer: BaseAnswer = BaseAnswer(id, answer)
 
-    fun getAnswer(): String {
+    fun getAnswer(): BaseAnswer {
         return mAnswer
     }
 

@@ -13,8 +13,14 @@ abstract class BaseChallengeQuestionHolder<Item>(itemView: View) :
         mDescriptionView = view.findViewById(R.id.item_text_view)
     }
 
+    override fun bindItem(item: Item) {
+        mDescriptionView.text = getItemText(item)
+    }
+
     override fun unBindItem() {
         mDescriptionView.text = null
     }
+
+    abstract fun getItemText(item: Item): String
 
 }

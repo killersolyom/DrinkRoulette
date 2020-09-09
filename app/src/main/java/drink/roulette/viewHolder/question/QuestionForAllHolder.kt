@@ -3,4 +3,8 @@ package drink.roulette.viewHolder.question
 import android.view.View
 import drink.roulette.model.questions.question.QuestionForAll
 
-class QuestionForAllHolder(itemView: View) : BaseQuestionHolder<QuestionForAll>(itemView)
+class QuestionForAllHolder(itemView: View) : BaseQuestionHolder<QuestionForAll>(itemView) {
+    override fun getItemText(item: QuestionForAll): String {
+        return item.getQuestion()
+    }
+}

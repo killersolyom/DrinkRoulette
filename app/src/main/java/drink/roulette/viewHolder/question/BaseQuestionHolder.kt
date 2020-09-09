@@ -5,9 +5,4 @@ import drink.roulette.model.questions.question.BaseQuestionItem
 import drink.roulette.viewHolder.BaseChallengeQuestionHolder
 
 abstract class BaseQuestionHolder<Item : BaseQuestionItem>(itemView: View) :
-    BaseChallengeQuestionHolder<Item>(itemView) {
-
-    override fun bindItem(item: Item) {
-        mDescriptionView.text = item.getQuestion()
-    }
-}
+    BaseChallengeQuestionHolder<Item>(itemView)

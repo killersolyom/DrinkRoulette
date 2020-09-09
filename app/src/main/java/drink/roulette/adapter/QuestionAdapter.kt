@@ -1,16 +1,16 @@
 package drink.roulette.adapter
 
-import drink.roulette.model.questions.BaseDefaultQuestion
+import drink.roulette.model.DefaultItem
 
-class QuestionAdapter : BaseAdapter<BaseDefaultQuestion>() {
+class QuestionAdapter : BaseAdapter<DefaultItem>() {
 
-    var mItem: BaseDefaultQuestion? = null
+    var mItem: DefaultItem? = null
 
     override fun getItemCount(): Int {
         return if (mItem == null) 0 else 1
     }
 
-    override fun getItem(position: Int): BaseDefaultQuestion? {
+    override fun getItem(position: Int): DefaultItem? {
         return mItem
     }
 
@@ -18,7 +18,7 @@ class QuestionAdapter : BaseAdapter<BaseDefaultQuestion>() {
         mItem = null
     }
 
-    override fun addItem(item: BaseDefaultQuestion) {
+    override fun addItem(item: DefaultItem) {
         mItem = item
         notifyDataSetChanged()
     }

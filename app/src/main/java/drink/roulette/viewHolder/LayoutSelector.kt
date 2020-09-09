@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import drink.roulette.R
 import drink.roulette.viewHolder.ViewType.*
+import drink.roulette.viewHolder.answer.BaseAnswerHolder
 import drink.roulette.viewHolder.challenge.ChallengeForAllHolder
 import drink.roulette.viewHolder.challenge.ChallengeForPlayerHolder
 import drink.roulette.viewHolder.challenge.ChallengeForTwoPlayerHolder
@@ -30,6 +31,8 @@ class LayoutSelector {
                     return ChallengeForPlayerHolder(inflate(p, R.layout.question_item_layout))
                 TWO_PLAYER_CHALLENGE_TYPE.type ->
                     return ChallengeForTwoPlayerHolder(inflate(p, R.layout.question_item_layout))
+                ANSWER_TYPE.type ->
+                    return BaseAnswerHolder(inflate(p, R.layout.question_item_layout))
                 else ->
                     return DefaultViewHolder<Any>(inflate(p, R.layout.default_layout))
             }
