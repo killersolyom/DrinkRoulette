@@ -4,6 +4,7 @@ import android.content.Context
 import drink.roulette.data.JsonDataParser
 import drink.roulette.model.DefaultItem
 import drink.roulette.model.questions.BaseDefaultQuestion
+import drink.roulette.model.questions.answer.EndMessage
 import drink.roulette.model.questions.question.BaseQuestionItem
 
 class QuestionManager(mContext: Context) {
@@ -30,7 +31,10 @@ class QuestionManager(mContext: Context) {
             if (it is BaseQuestionItem) {
                 questionList.add(it.getAnswer())
             }
+
         }
+
+        questionList.add(EndMessage(0, mDataParser.getEndMessage()))
 
         return questionList
     }

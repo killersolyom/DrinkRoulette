@@ -35,11 +35,11 @@
       "QUESTION_GROUP": [
         {
           "ID": 1,
-          "QUESTION": "Mi a szar 3?"
+          "CHALLENGE": "Mi a szar 3?"
         },
         {
           "ID": 2,
-          "QUESTION": "Mi a szar 4?"
+          "CHALLENGE": "Mi a szar 4?"
         }
       ]
     },
@@ -48,11 +48,11 @@
       "QUESTION_GROUP": [
         {
           "ID": 1,
-          "QUESTION": "fussá"
+          "CHALLENGE": "fussá"
         },
         {
           "ID": 2,
-          "QUESTION": "menekülj"
+          "CHALLENGE": "menekülj"
         }
       ]
     },
@@ -61,11 +61,20 @@
       "QUESTION_GROUP": [
         {
           "ID": 1,
-          "QUESTION": "fussá"
+          "CHALLENGE": "fussá"
         },
         {
           "ID": 2,
-          "QUESTION": "menekülj"
+          "CHALLENGE": "menekülj"
+        }
+      ]
+    },
+    {
+      "TYPE": "END_MESSAGE",
+      "QUESTION_GROUP": [
+        {
+          "ID": 0,
+          "END_MESSAGE": "Szia"
         }
       ]
     }

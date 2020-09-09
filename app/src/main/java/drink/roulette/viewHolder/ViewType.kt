@@ -8,5 +8,6 @@ enum class ViewType(val type: Int) {
     CHALLENGE_FOR_ALL_TYPE(3),
     QUESTION_FOR_ALL_TYPE(4),
     QUESTION_FOR_PLAYER_TYPE(5),
-    ANSWER_TYPE(6)
+    ANSWER_TYPE(6),
+    END_MESSAGE_TYPE(7)
 }
