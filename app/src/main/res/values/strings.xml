@@ -9,5 +9,11 @@
     <string name="name_list_one_player">Most komolyan egyedül akarsz berúgni?</string>
     <string name="name_not_drinking_player">\u0020 nem is fog inni vagy mi?</string>
     <string name="press_again_to_exit">Nyomd meg mégegyszer ha mered!</string>
+    <string name="answer">Válasz</string>
+    <string name="challenge_for_all">Kihívás mindenkinek</string>
+    <string name="dedicated_challenge">Személyre szóló kihívás</string>
+    <string name="challenge_for_two_player">Páros kihívás</string>
+    <string name="question_for_all">Kérdés mindenkihez</string>
+    <string name="question_for_palyer">Dedikált kérdés</string>
 
 </resources>

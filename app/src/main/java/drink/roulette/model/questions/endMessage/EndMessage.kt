@@ -1,9 +1,11 @@
-package drink.roulette.model.questions.answer
+package drink.roulette.model.questions.endMessage
 
 import drink.roulette.model.DefaultItem
 import drink.roulette.viewHolder.ViewType
 
 open class EndMessage(id: Int, private var mMessage: String) : DefaultItem() {
+
+    constructor(endMessage: String) : this(0, endMessage)
 
     private var mId: Int = id
 

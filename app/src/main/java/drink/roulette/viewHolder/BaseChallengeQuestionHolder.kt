@@ -23,4 +23,6 @@ abstract class BaseChallengeQuestionHolder<Item>(itemView: View) :
 
     abstract fun getItemText(item: Item): String
 
+    abstract fun getTitle(): Int
+
 }

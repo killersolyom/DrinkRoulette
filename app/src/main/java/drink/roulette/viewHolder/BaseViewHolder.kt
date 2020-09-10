@@ -9,7 +9,7 @@ abstract class BaseViewHolder<GenericItem> internal constructor(view: View) : Vi
         findView(view)
     }
 
-    private var mItemView: View = view
+    protected var mItemView: View = view
 
     protected abstract fun findView(view: View)
 

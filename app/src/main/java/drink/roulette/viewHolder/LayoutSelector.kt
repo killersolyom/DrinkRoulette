@@ -9,6 +9,7 @@ import drink.roulette.viewHolder.answer.BaseAnswerHolder
 import drink.roulette.viewHolder.challenge.ChallengeForAllHolder
 import drink.roulette.viewHolder.challenge.ChallengeForPlayerHolder
 import drink.roulette.viewHolder.challenge.ChallengeForTwoPlayerHolder
+import drink.roulette.viewHolder.endMessage.EndMessageHolder
 import drink.roulette.viewHolder.question.QuestionForAllHolder
 import drink.roulette.viewHolder.question.QuestionForPlayerHolder
 
@@ -33,6 +34,8 @@ class LayoutSelector {
                     return ChallengeForTwoPlayerHolder(inflate(p, R.layout.question_item_layout))
                 ANSWER_TYPE.type ->
                     return BaseAnswerHolder(inflate(p, R.layout.question_item_layout))
+                END_MESSAGE_TYPE.type ->
+                    return EndMessageHolder(inflate(p, R.layout.end_message_item_layout))
                 else ->
                     return DefaultViewHolder<Any>(inflate(p, R.layout.default_layout))
             }
