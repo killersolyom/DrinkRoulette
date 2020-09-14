@@ -1,7 +1,6 @@
 package drink.roulette.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,23 +42,15 @@ class QuestionFragment : BaseFragment() {
         mQuestionAdapter = QuestionAdapter()
         mQuestionRecyclerView.layoutManager = LinearLayoutManager(context)
         mQuestionRecyclerView.adapter = mQuestionAdapter
-        mNextButton.setOnClickListener { onNext() }
         mQuestionList = mQuestionManager.getRandomQuestions()
-        onNext()
+        mQuestionAdapter.addItemList(mQuestionList)
+        mQuestionAdapter.addPlayerNames(mPlayerNames)
+        mNextButton.setOnClickListener(mQuestionAdapter.getClickListener())
     }
 
     override fun loadArguments(bundle: Bundle) {
         if (mBundleUtil.canCast(bundle, PLAYER_LIST, ArrayList::class.java)) {
             mPlayerNames = bundle.get(PLAYER_LIST) as ArrayList<String>
-        }
-    }
-
-    private fun onNext() {
-        if (mQuestionList.isEmpty()) {
-            Log.d(TAG, "Empty")
-        } else {
-            mQuestionAdapter.addItem(mQuestionList[0])
-            mQuestionList.removeAt(0)
         }
     }
 

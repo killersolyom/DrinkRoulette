@@ -1,26 +1,40 @@
 package drink.roulette.adapter
 
+import android.view.View
 import drink.roulette.model.DefaultItem
+import drink.roulette.utility.FragmentNavigation
+import drink.roulette.utility.ModuleInjector
+import java.util.*
 
-class QuestionAdapter : BaseAdapter<DefaultItem>() {
+class QuestionAdapter : ItemAdapter<DefaultItem>() {
 
-    var mItem: DefaultItem? = null
+    private lateinit var mNavigator: FragmentNavigation
+    private lateinit var mPlayerNames: ArrayList<String>
+    private val mCLickListener = View.OnClickListener { onNext() }
 
-    override fun getItemCount(): Int {
-        return if (mItem == null) 0 else 1
+    init {
+        injectModules()
     }
 
-    override fun getItem(position: Int): DefaultItem? {
-        return mItem
+    private fun injectModules() {
+        mNavigator = ModuleInjector.get(FragmentNavigation::class.java)
     }
 
-    override fun clearItems() {
-        mItem = null
+    fun getClickListener(): View.OnClickListener {
+        return mCLickListener
     }
 
-    override fun addItem(item: DefaultItem) {
-        mItem = item
-        notifyDataSetChanged()
+    private fun onNext() {
+        if (mItemList.size == 1) {
+            mNavigator.showHomeFragment()
+        } else {
+            notifyDataSetChanged()
+            mItemList.removeAt(0)
+        }
+    }
+
+    fun addPlayerNames(playerNames: ArrayList<String>) {
+        mPlayerNames = playerNames
     }
 
 }

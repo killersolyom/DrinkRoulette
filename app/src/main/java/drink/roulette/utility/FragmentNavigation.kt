@@ -29,7 +29,7 @@ class FragmentNavigation(activity: BaseActivity) : BaseNavigation(activity) {
 
     override fun beforeFragmentLoaded(newFragment: BaseFragment) {
         when (newFragment.javaClass) {
-            QuestionFragment::class.java, QuestionFragment::class.java -> clearBackStack(true)
+            QuestionFragment::class.java, HomeFragment::class.java -> clearBackStack(true)
         }
     }
 

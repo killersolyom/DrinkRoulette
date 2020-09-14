@@ -17,10 +17,10 @@ class PlayerInputFragment : BaseFragment() {
     private lateinit var mNotification: NotificationManager
 
     private lateinit var mNameAdapter: ItemAdapter<PlayerNameItem>
-    lateinit var mPlayerRecyclerView: ParchmentView<PlayerNameItem>
-    lateinit var mDescriptionText: TextView
-    lateinit var mNameInputView: EditText
-    lateinit var mAddButton: View
+    private lateinit var mPlayerRecyclerView: ParchmentView<PlayerNameItem>
+    private lateinit var mDescriptionText: TextView
+    private lateinit var mNameInputView: EditText
+    private lateinit var mAddButton: View
     lateinit var mDoneButton: View
 
     override fun getLayoutId(): Int {

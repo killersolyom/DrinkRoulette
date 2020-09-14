@@ -10,8 +10,9 @@
         android:layout_height="0dp"
         android:gravity="start"
         android:maxLines="1"
-        android:paddingStart="35dp"
-        android:paddingTop="35dp"
+        android:paddingStart="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:paddingEnd="35dp"
         android:textColor="@color/colorLightBrown"
         android:textSize="24sp"
@@ -27,9 +28,10 @@
         android:padding="35dp"
         android:textColor="@color/colorLightBrown"
         android:textSize="24sp"
+        android:paddingTop="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_title_text_view" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,30 +1,47 @@
 package drink.roulette.adapter
 
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import drink.roulette.model.BaseItem
+import drink.roulette.viewHolder.BaseViewHolder
+import drink.roulette.viewHolder.LayoutSelector
 import java.util.*
 
-class ItemAdapter<Item : BaseItem> : BaseAdapter<Item>() {
+open class ItemAdapter<Item : BaseItem> : RecyclerView.Adapter<BaseViewHolder<Item>>() {
 
     var mItemList = ArrayList<Item>()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Item> {
+        return LayoutSelector.getLayoutForItem(parent, viewType) as BaseViewHolder<Item>
+    }
+
+    override fun onBindViewHolder(holder: BaseViewHolder<Item>, position: Int) {
+        holder.bindItem(mItemList[position])
+    }
+
+    override fun onViewRecycled(holder: BaseViewHolder<Item>) {
+        super.onViewRecycled(holder)
+        holder.unBindItem()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return mItemList[position].getViewType().type
+    }
 
     fun addItemList(itemList: ArrayList<Item>) {
         this.mItemList = itemList
     }
 
-    override fun addItem(item: Item) {
+    fun addItem(item: Item) {
         mItemList.add(item)
         notifyItemInserted(mItemList.indexOf(item))
-    }
-
-    override fun getItem(position: Int): Item {
-        return mItemList[position]
     }
 
     override fun getItemCount(): Int {
         return mItemList.size
     }
 
-    override fun clearItems() {
+    fun clearItems() {
         mItemList.clear()
         notifyDataSetChanged()
     }
