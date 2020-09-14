@@ -5,13 +5,15 @@
       "QUESTION_GROUP": [
         {
           "ID": 1,
-          "QUESTION": "Hol pisil a tyúk?",
-          "ANSWER": "Hát ahol eléri"
+          "QUESTION": "Mondjon mindenki egy óvszer márkát! Aki nem tud az iszik egyet!"
         },
         {
           "ID": 2,
-          "QUESTION": "Mi az? Nyolc szeme, nyolc lába és nyolc foga van, fogaiból pedig zöld méreg folyik.",
-          "ANSWER": "Én sem tudom, aki tudja az igyon egyet!"
+          "QUESTION": "Mondjon mindenki egy kamion márkát! Aki nem tud az iszik egyet!"
+        },
+        {
+          "ID": 3,
+          "QUESTION": "Mondjon mindenki egy traktor márkát! Aki nem tud az iszik egyet!"
         }
       ]
     },
@@ -27,6 +29,16 @@
           "ID": 2,
           "QUESTION": "[PLAYER], hány megye van romániában?",
           "ANSWER": "41"
+        },
+        {
+          "ID": 3,
+          "QUESTION": "[PLAYER], Hol pisil a tyúk?",
+          "ANSWER": "Hát ahol eléri"
+        },
+        {
+          "ID": 4,
+          "QUESTION": "[PLAYER], Mi az? Nyolc szeme, nyolc lába és nyolc foga van, fogaiból pedig zöld méreg folydogál.",
+          "ANSWER": "Én sem tudom, inkább igyon egyet mindenki!"
         }
       ]
     },

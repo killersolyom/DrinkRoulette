@@ -6,6 +6,7 @@ import drink.roulette.model.DefaultItem
 import drink.roulette.model.questions.BaseDefaultQuestion
 import drink.roulette.model.questions.endMessage.EndMessage
 import drink.roulette.model.questions.question.BaseQuestionItem
+import drink.roulette.model.questions.question.QuestionForAll
 
 class QuestionManager(mContext: Context) {
 
@@ -27,11 +28,9 @@ class QuestionManager(mContext: Context) {
         val questionList = ArrayList<DefaultItem>()
         questionItems.forEach {
             questionList.add(it)
-
-            if (it is BaseQuestionItem) {
+            if (it is BaseQuestionItem && it !is QuestionForAll) {
                 questionList.add(it.getAnswer())
             }
-
         }
 
         questionList.add(EndMessage(mDataParser.getEndMessage()))
@@ -44,11 +43,25 @@ class QuestionManager(mContext: Context) {
         items.addAll(values)
         items.shuffle()
 
-        if (NUMBER_OF_ITEMS >= items.size) {
-            return items as ArrayList<BaseDefaultQuestion>
+        if (NUMBER_OF_ITEMS == 0) {
+            return castToDefaultQuestion(null)
         }
 
-        return items.subList(0, NUMBER_OF_ITEMS) as ArrayList<BaseDefaultQuestion>
+        if (NUMBER_OF_ITEMS == 1) {
+            val returnList: ArrayList<Any> = ArrayList()
+            returnList.add(items[0])
+            return castToDefaultQuestion(returnList)
+        }
+
+        if (NUMBER_OF_ITEMS >= items.size) {
+            castToDefaultQuestion(items)
+        }
+
+        return castToDefaultQuestion(items.subList(0, NUMBER_OF_ITEMS))
+    }
+
+    private fun castToDefaultQuestion(values: MutableList<Any>?): ArrayList<BaseDefaultQuestion> {
+        return if (values == null) return ArrayList() else values as ArrayList<BaseDefaultQuestion>
     }
 
 }
