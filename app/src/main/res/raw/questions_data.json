@@ -37,7 +37,7 @@
         },
         {
           "ID": 4,
-          "QUESTION": "[PLAYER], Mi az? Nyolc szeme, nyolc lába és nyolc foga van, fogaiból pedig zöld méreg folydogál.",
+          "QUESTION": "[PLAYER], Mi az? Nyolc szeme, nyolc lába és fogaiból pedig zöld méreg folydogál.",
           "ANSWER": "Én sem tudom, inkább igyon egyet mindenki!"
         }
       ]
@@ -73,7 +73,7 @@
       "QUESTION_GROUP": [
         {
           "ID": 1,
-          "CHALLENGE": "Ismételd utánam háromszor: Cseresznyemag meg megyymag"
+          "CHALLENGE": "Ismételjétek utánam: Cseresznyemag meg megyymag. Aki nem tudja elmondani az iszik egyet!"
         },
         {
           "ID": 2,

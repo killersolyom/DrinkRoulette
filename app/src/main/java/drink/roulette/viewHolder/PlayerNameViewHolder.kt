@@ -3,7 +3,7 @@ package drink.roulette.viewHolder
 import android.view.View
 import drink.roulette.R
 import drink.roulette.customView.PlayerNameView
-import drink.roulette.model.viewHolderItem.PlayerNameItem
+import drink.roulette.model.playerName.PlayerNameItem
 
 class PlayerNameViewHolder(itemView: View) : DefaultViewHolder<PlayerNameItem>(itemView) {
 

@@ -4,12 +4,11 @@ import android.view.View
 import drink.roulette.model.DefaultItem
 import drink.roulette.utility.FragmentNavigation
 import drink.roulette.utility.ModuleInjector
-import java.util.*
 
 class QuestionAdapter : ItemAdapter<DefaultItem>() {
 
     private lateinit var mNavigator: FragmentNavigation
-    private lateinit var mPlayerNames: ArrayList<String>
+
     private val mCLickListener = View.OnClickListener { onNext() }
 
     init {
@@ -31,10 +30,6 @@ class QuestionAdapter : ItemAdapter<DefaultItem>() {
             notifyDataSetChanged()
             mItemList.removeAt(0)
         }
-    }
-
-    fun addPlayerNames(playerNames: ArrayList<String>) {
-        mPlayerNames = playerNames
     }
 
 }

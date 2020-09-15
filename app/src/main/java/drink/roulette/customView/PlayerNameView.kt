@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
 import drink.roulette.R
-import drink.roulette.model.viewHolderItem.PlayerNameItem
+import drink.roulette.model.playerName.PlayerNameItem
 
 class PlayerNameView(context: Context, attrs: AttributeSet?) :
     BaseCustomView<PlayerNameItem>(context, attrs) {

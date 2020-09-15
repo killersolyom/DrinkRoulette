@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import drink.roulette.R
 import drink.roulette.adapter.ItemAdapter
 import drink.roulette.model.BaseItem
-import drink.roulette.model.viewHolderItem.PlayerNameItem
+import drink.roulette.model.playerName.PlayerNameItem
 
 class ParchmentView<Item : BaseItem>(context: Context, attrs: AttributeSet?) :
     BaseCustomView<PlayerNameItem>(context, attrs) {

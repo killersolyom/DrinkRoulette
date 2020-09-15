@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import drink.roulette.R
 import drink.roulette.adapter.QuestionAdapter
 import drink.roulette.model.DefaultItem
+import drink.roulette.model.playerName.PlayerNames
 import drink.roulette.utility.BundleUtil
 import drink.roulette.utility.ModuleInjector
 import drink.roulette.utility.QuestionManager
 
-class QuestionFragment : BaseFragment() {
+class QuestionFragment : BaseFragment(), PlayerNames {
 
     private lateinit var mBundleUtil: BundleUtil
     private lateinit var mQuestionManager: QuestionManager
@@ -42,9 +43,8 @@ class QuestionFragment : BaseFragment() {
         mQuestionAdapter = QuestionAdapter()
         mQuestionRecyclerView.layoutManager = LinearLayoutManager(context)
         mQuestionRecyclerView.adapter = mQuestionAdapter
-        mQuestionList = mQuestionManager.getRandomQuestions()
+        mQuestionList = mQuestionManager.getRandomQuestions(this)
         mQuestionAdapter.addItemList(mQuestionList)
-        mQuestionAdapter.addPlayerNames(mPlayerNames)
         mNextButton.setOnClickListener(mQuestionAdapter.getClickListener())
     }
 
@@ -63,6 +63,10 @@ class QuestionFragment : BaseFragment() {
                 arguments = Bundle().apply { putSerializable(PLAYER_LIST, players) }
             }
         }
+    }
+
+    override fun getPlayerNames(): ArrayList<String> {
+        return mPlayerNames
     }
 
 }

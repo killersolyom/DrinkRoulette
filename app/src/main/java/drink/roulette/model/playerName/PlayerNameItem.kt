@@ -1,4 +1,4 @@
-package drink.roulette.model.viewHolderItem
+package drink.roulette.model.playerName
 
 import drink.roulette.model.DefaultItem
 import drink.roulette.viewHolder.ViewType

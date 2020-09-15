@@ -7,7 +7,7 @@ import android.widget.TextView
 import drink.roulette.R
 import drink.roulette.adapter.ItemAdapter
 import drink.roulette.customView.ParchmentView
-import drink.roulette.model.viewHolderItem.PlayerNameItem
+import drink.roulette.model.playerName.PlayerNameItem
 import drink.roulette.utility.ModuleInjector
 import drink.roulette.utility.NotificationManager
 

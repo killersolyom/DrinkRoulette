@@ -3,10 +3,12 @@ package drink.roulette.utility
 import android.content.Context
 import drink.roulette.data.JsonDataParser
 import drink.roulette.model.DefaultItem
+import drink.roulette.model.playerName.PlayerNames
 import drink.roulette.model.questions.BaseDefaultQuestion
 import drink.roulette.model.questions.endMessage.EndMessage
 import drink.roulette.model.questions.question.BaseQuestionItem
 import drink.roulette.model.questions.question.QuestionForAll
+import drink.roulette.viewHolder.playerNames.PlayerNamesCallback
 
 class QuestionManager(mContext: Context) {
 
@@ -17,7 +19,7 @@ class QuestionManager(mContext: Context) {
         mDataParser.parseJson(mContext)
     }
 
-    fun getRandomQuestions(): ArrayList<DefaultItem> {
+    fun getRandomQuestions(playerNames: PlayerNames): ArrayList<DefaultItem> {
         val questionItems = ArrayList<BaseDefaultQuestion>()
         questionItems.addAll(getRandomItems(mDataParser.getQuestionForAllList()))
         questionItems.addAll(getRandomItems(mDataParser.getPlayerDedicatedQuestionList()))
@@ -25,9 +27,17 @@ class QuestionManager(mContext: Context) {
         questionItems.addAll(getRandomItems(mDataParser.getDedicatedChallengeForPlayerList()))
         questionItems.addAll(getRandomItems(mDataParser.getTwoPlayerChallengeList()))
 
+        questionItems.shuffle()
+
         val questionList = ArrayList<DefaultItem>()
         questionItems.forEach {
+
+            if (it is PlayerNamesCallback) {
+                it.setPlayerNames(playerNames)
+            }
+
             questionList.add(it)
+
             if (it is BaseQuestionItem && it !is QuestionForAll) {
                 questionList.add(it.getAnswer())
             }
@@ -54,7 +64,7 @@ class QuestionManager(mContext: Context) {
         }
 
         if (NUMBER_OF_ITEMS >= items.size) {
-            castToDefaultQuestion(items)
+            return castToDefaultQuestion(items)
         }
 
         return castToDefaultQuestion(items.subList(0, NUMBER_OF_ITEMS))
