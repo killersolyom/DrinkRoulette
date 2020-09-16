@@ -4,30 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
-import butterknife.ButterKnife
-import drink.roulette.listener.EventListener
-import drink.roulette.model.event.Event
 import drink.roulette.utility.FragmentNavigation
-import drink.roulette.utility.moduleInjector.InjectModule
-import drink.roulette.utility.moduleInjector.ModuleInjector
+import drink.roulette.utility.ModuleInjector
 
-abstract class BaseFragment : Fragment(), EventListener {
+abstract class BaseFragment : Fragment() {
 
     val TAG = this.javaClass.canonicalName
 
-    private lateinit var mView: View
+    protected lateinit var mNavigator: FragmentNavigation
 
-    @InjectModule(FragmentNavigation::class)
-    lateinit var mNavigator: FragmentNavigation
+    private lateinit var mView: View
 
     override fun onCreateView(inflanter: LayoutInflater, container: ViewGroup?, b: Bundle?): View? {
         if (view == null) {
             mView = inflanter.inflate(getLayoutId(), container, false)
         }
+        findView(mView)
+        injectModules()
+        arguments?.let { loadArguments(it) }
         initComponents()
-        ButterKnife.bind(this, mView)
-        ModuleInjector.inject(this)
         return mView
     }
 
@@ -35,13 +32,19 @@ abstract class BaseFragment : Fragment(), EventListener {
 
     protected open fun initComponents() {}
 
-    protected abstract fun onInitializationFinished()
+    protected abstract fun findView(view: View)
+
+    @CallSuper
+    protected open fun injectModules() {
+        mNavigator = ModuleInjector.get(FragmentNavigation::class.java)
+    }
+
+    protected open fun loadArguments(bundle: Bundle) {
+    }
+
+    protected open fun onInitializationFinished() {}
 
     protected open fun removeCallbacks() {}
-
-    override fun onEvent(event: Event?): Boolean {
-        return false
-    }
 
     override fun onResume() {
         super.onResume()

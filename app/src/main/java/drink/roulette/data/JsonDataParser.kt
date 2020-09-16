@@ -3,6 +3,7 @@ package drink.roulette.data
 import android.content.Context
 import drink.roulette.R
 import drink.roulette.model.JsonPropertyName
+import drink.roulette.model.JsonPropertyName.*
 import drink.roulette.model.questions.challenge.ChallengeForAll
 import drink.roulette.model.questions.challenge.DedicatedPlayerChallenge
 import drink.roulette.model.questions.challenge.TwoPlayerChallenge
@@ -24,6 +25,8 @@ class JsonDataParser {
     private var mChallengeForPlayer: ArrayList<DedicatedPlayerChallenge> = ArrayList()
     private var mChallengeForTwoPlayer: ArrayList<TwoPlayerChallenge> = ArrayList()
 
+    private lateinit var mEndMessage: String
+
     private fun getJson(context: Context): JSONObject {
         val input: InputStream = context.resources.openRawResource(R.raw.questions_data)
         val text = String(input.readBytes())
@@ -32,11 +35,11 @@ class JsonDataParser {
     }
 
     fun parseJson(context: Context) {
-        val questionList = getJson(context).getJSONArray(JsonPropertyName.QUESTIONS.name)
+        val questionList = getJson(context).getJSONArray(QUESTIONS.name)
         for (it in 0 until questionList.length()) {
             val questionGroup = questionList.get(it) as JSONObject
-            val type: String = questionGroup.getString(JsonPropertyName.TYPE.name)
-            val categoryQuestions = questionGroup.getJSONArray(JsonPropertyName.QUESTION_GROUP.name)
+            val type: String = questionGroup.getString(TYPE.name)
+            val categoryQuestions = questionGroup.getJSONArray(QUESTION_GROUP.name)
             parseItem(type, categoryQuestions)
         }
     }
@@ -44,22 +47,44 @@ class JsonDataParser {
     private fun parseItem(itemType: String, itemList: JSONArray) {
         for (it in 0 until itemList.length()) {
             val questionItem = itemList[it] as JSONObject
-            val id: Int = questionItem.getInt(JsonPropertyName.ID.name)
-            val question: String = getStringOrDefault(questionItem, JsonPropertyName.QUESTION)
-            val answer: String = getStringOrDefault(questionItem, JsonPropertyName.ANSWER)
+
+            val id: Int = questionItem.getInt(ID.name)
 
             when (itemType) {
-                JsonPropertyName.SIMPLE_QUESTION_FOR_ALL.name ->
-                    mQuestionForAll.add(QuestionForAll(id, question, answer))
-                JsonPropertyName.PLAYER_DEDICATED_QUESTION.name ->
-                    mQuestionForPlayer.add(QuestionForPlayer(id, question, answer))
-                JsonPropertyName.PLAYER_DEDICATED_CHALLENGE.name ->
-                    mChallengeForPlayer.add(DedicatedPlayerChallenge(id, question))
-                JsonPropertyName.TWO_PLAYER_DEDICATED_CHALLENGE.name ->
-                    mChallengeForTwoPlayer.add(TwoPlayerChallenge(id, question))
-                JsonPropertyName.CHALLENGE_FOR_ALL.name ->
-                    mChallengeForAll.add(ChallengeForAll(id, question))
+                SIMPLE_QUESTION_FOR_ALL.name,
+                PLAYER_DEDICATED_QUESTION.name -> {
+                    val question: String = getStringOrDefault(questionItem, QUESTION)
+                    val answer: String = getStringOrDefault(questionItem, ANSWER)
+                    createQuestionObject(itemType, id, question, answer)
+                }
+                PLAYER_DEDICATED_CHALLENGE.name,
+                TWO_PLAYER_DEDICATED_CHALLENGE.name,
+                CHALLENGE_FOR_ALL.name -> {
+                    val challenge: String = getStringOrDefault(questionItem, CHALLENGE)
+                    createChallengeObject(itemType, id, challenge)
+                }
+                END_MESSAGE.name -> mEndMessage = getStringOrDefault(questionItem, END_MESSAGE)
             }
+        }
+    }
+
+    private fun createQuestionObject(itemType: String, id: Int, question: String, answer: String) {
+        when (itemType) {
+            SIMPLE_QUESTION_FOR_ALL.name ->
+                mQuestionForAll.add(QuestionForAll(id, question, answer))
+            PLAYER_DEDICATED_QUESTION.name ->
+                mQuestionForPlayer.add(QuestionForPlayer(id, question, answer))
+        }
+    }
+
+    private fun createChallengeObject(itemType: String, id: Int, challenge: String) {
+        when (itemType) {
+            PLAYER_DEDICATED_CHALLENGE.name ->
+                mChallengeForPlayer.add(DedicatedPlayerChallenge(id, challenge))
+            TWO_PLAYER_DEDICATED_CHALLENGE.name ->
+                mChallengeForTwoPlayer.add(TwoPlayerChallenge(id, challenge))
+            CHALLENGE_FOR_ALL.name ->
+                mChallengeForAll.add(ChallengeForAll(id, challenge))
         }
     }
 
@@ -85,6 +110,10 @@ class JsonDataParser {
 
     fun getTwoPlayerChallengeList(): ArrayList<TwoPlayerChallenge> {
         return mChallengeForTwoPlayer
+    }
+
+    fun getEndMessage(): String {
+        return mEndMessage
     }
 
 }

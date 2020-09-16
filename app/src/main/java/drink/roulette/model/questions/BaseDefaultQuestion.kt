@@ -1,25 +1,13 @@
 package drink.roulette.model.questions
 
-import drink.roulette.model.QuestionType
+import drink.roulette.model.DefaultItem
 
-abstract class BaseDefaultQuestion {
+abstract class BaseDefaultQuestion(id: Int, description: String) : DefaultItem() {
 
-    private var mId: Int = -1
-    protected var mDescription: String = ""
-
-    constructor(id: Int, description: String) : super() {
-        this.mId = id
-        mDescription = description
-    }
-
-    fun setDescription(description: String) {
-        mDescription = description;
-    }
+    private var mId: Int = id
+    protected var mDescription: String = description
 
     fun getId(): Int {
         return mId
     }
-
-    abstract fun getQuestionType(): QuestionType
-
 }

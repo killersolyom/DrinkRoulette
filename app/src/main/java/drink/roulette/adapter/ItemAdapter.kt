@@ -7,16 +7,16 @@ import drink.roulette.viewHolder.BaseViewHolder
 import drink.roulette.viewHolder.LayoutSelector
 import java.util.*
 
-class ItemAdapter<Item : BaseItem> : RecyclerView.Adapter<BaseViewHolder<Item>>() {
+open class ItemAdapter<Item : BaseItem> : RecyclerView.Adapter<BaseViewHolder<Item>>() {
 
-    var itemList = ArrayList<Item>()
+    var mItemList = ArrayList<Item>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Item> {
         return LayoutSelector.getLayoutForItem(parent, viewType) as BaseViewHolder<Item>
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<Item>, position: Int) {
-        holder.bindItem(itemList[position])
+        holder.bindItem(mItemList[position])
     }
 
     override fun onViewRecycled(holder: BaseViewHolder<Item>) {
@@ -25,28 +25,25 @@ class ItemAdapter<Item : BaseItem> : RecyclerView.Adapter<BaseViewHolder<Item>>(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return itemList[position].getViewType().type
-    }
-
-    override fun getItemCount(): Int {
-        return itemList.size
+        return mItemList[position].getViewType().type
     }
 
     fun addItemList(itemList: ArrayList<Item>) {
-        this.itemList = itemList
+        this.mItemList = itemList
     }
 
     fun addItem(item: Item) {
-        itemList.add(item)
-        notifyItemInserted(itemList.indexOf(item))
+        mItemList.add(item)
+        notifyItemInserted(mItemList.indexOf(item))
+    }
+
+    override fun getItemCount(): Int {
+        return mItemList.size
     }
 
     fun clearItems() {
-        itemList.clear()
+        mItemList.clear()
         notifyDataSetChanged()
     }
-
-    val isEmpty: Boolean
-        get() = itemList.isEmpty()
 
 }

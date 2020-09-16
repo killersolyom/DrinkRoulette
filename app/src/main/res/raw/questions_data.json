@@ -5,13 +5,15 @@
       "QUESTION_GROUP": [
         {
           "ID": 1,
-          "QUESTION": "Mi a szar 1?",
-          "ANSWER": "Igen"
+          "QUESTION": "Mondjon mindenki egy óvszer márkát! Aki nem tud az iszik egyet!"
         },
         {
           "ID": 2,
-          "QUESTION": "Mi a szar 2?",
-          "ANSWER": "Igen"
+          "QUESTION": "Mondjon mindenki egy kamion márkát! Aki nem tud az iszik egyet!"
+        },
+        {
+          "ID": 3,
+          "QUESTION": "Mondjon mindenki egy traktor márkát! Aki nem tud az iszik egyet!"
         }
       ]
     },
@@ -20,26 +22,23 @@
       "QUESTION_GROUP": [
         {
           "ID": 1,
-          "QUESTION": "Mi a szar 3?",
-          "ANSWER": "Igen"
+          "QUESTION": "Se keze se lába mégis felmegy a padlásra? [PLAYER]  Mégis mi lehet az?",
+          "ANSWER": "Ügyes nyomorék"
         },
         {
           "ID": 2,
-          "QUESTION": "Mi a szar 4?",
-          "ANSWER": "Igen"
-        }
-      ]
-    },
-    {
-      "TYPE": "TWO_PLAYER_DEDICATED_CHALLENGE",
-      "QUESTION_GROUP": [
-        {
-          "ID": 1,
-          "QUESTION": "Mi a szar 3?"
+          "QUESTION": "[PLAYER], hány megye van romániában?",
+          "ANSWER": "41"
         },
         {
-          "ID": 2,
-          "QUESTION": "Mi a szar 4?"
+          "ID": 3,
+          "QUESTION": "[PLAYER], Hol pisil a tyúk?",
+          "ANSWER": "Hát ahol eléri"
+        },
+        {
+          "ID": 4,
+          "QUESTION": "[PLAYER], Mi az? Nyolc szeme, nyolc lába és fogaiból pedig zöld méreg folydogál.",
+          "ANSWER": "Én sem tudom, inkább igyon egyet mindenki!"
         }
       ]
     },
@@ -48,11 +47,24 @@
       "QUESTION_GROUP": [
         {
           "ID": 1,
-          "QUESTION": "fussá"
+          "CHALLENGE": "[PLAYER] állj féllábon 30 másodpercig! A társak mérik az időt!"
         },
         {
           "ID": 2,
-          "QUESTION": "menekülj"
+          "CHALLENGE": "[PLAYER] ebben és a következő körben nem szólalhatsz meg. Ha megteszed iszol egyet!"
+        }
+      ]
+    },
+    {
+      "TYPE": "TWO_PLAYER_DEDICATED_CHALLENGE",
+      "QUESTION_GROUP": [
+        {
+          "ID": 1,
+          "CHALLENGE": "[PLAYER] mondd el [PLAYER] barátodnak hogy ő mennyire gyönyőrű"
+        },
+        {
+          "ID": 2,
+          "CHALLENGE": "[PLAYER] mostantól [PLAYER] az ivó pajtid lett. Ha valamelyikőtök iszik, akkor a másik is kötelezően inni fog."
         }
       ]
     },
@@ -61,11 +73,20 @@
       "QUESTION_GROUP": [
         {
           "ID": 1,
-          "QUESTION": "fussá"
+          "CHALLENGE": "Ismételjétek utánam: Cseresznyemag meg megyymag. Aki nem tudja elmondani az iszik egyet!"
         },
         {
           "ID": 2,
-          "QUESTION": "menekülj"
+          "CHALLENGE": "Akin piros vagy fekete ruhadarab van az igyon egyet!"
+        }
+      ]
+    },
+    {
+      "TYPE": "END_MESSAGE",
+      "QUESTION_GROUP": [
+        {
+          "ID": 0,
+          "END_MESSAGE": "Szia, itt a vége!"
         }
       ]
     }

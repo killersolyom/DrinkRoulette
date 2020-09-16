@@ -2,7 +2,6 @@ package drink.roulette.fragment
 
 import android.view.View
 import android.widget.ImageView
-import butterknife.BindView
 import com.bumptech.glide.Glide
 import com.szugyi.circlemenu.view.CircleLayout
 import drink.roulette.R
@@ -10,17 +9,18 @@ import drink.roulette.R
 
 class HomeFragment : BaseFragment(), CircleLayout.OnItemClickListener {
 
-    @BindView(R.id.circle_layout)
     lateinit var mCircleMenu: CircleLayout
-
-    @BindView(R.id.bottle_image_1)
     lateinit var mFirstImage: ImageView
-
-    @BindView(R.id.bottle_image_2)
     lateinit var mSecondImage: ImageView
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
+    }
+
+    override fun findView(view: View) {
+        mCircleMenu = view.findViewById(R.id.circle_layout)
+        mFirstImage = view.findViewById(R.id.bottle_image_1)
+        mSecondImage = view.findViewById(R.id.bottle_image_2)
     }
 
     override fun onInitializationFinished() {
