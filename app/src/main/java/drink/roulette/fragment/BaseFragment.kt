@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
-import drink.roulette.listener.EventListener
-import drink.roulette.model.event.Event
 import drink.roulette.utility.FragmentNavigation
 import drink.roulette.utility.ModuleInjector
 
-abstract class BaseFragment : Fragment(), EventListener {
+abstract class BaseFragment : Fragment() {
 
     val TAG = this.javaClass.canonicalName
 
@@ -47,10 +45,6 @@ abstract class BaseFragment : Fragment(), EventListener {
     protected open fun onInitializationFinished() {}
 
     protected open fun removeCallbacks() {}
-
-    override fun onEvent(event: Event?): Boolean {
-        return false
-    }
 
     override fun onResume() {
         super.onResume()
