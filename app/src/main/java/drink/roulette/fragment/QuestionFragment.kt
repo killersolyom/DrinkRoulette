@@ -38,7 +38,7 @@ class QuestionFragment : BaseFragment() {
         mQuestionManager = ModuleInjector.get(QuestionManager::class.java)
     }
 
-    override fun onInitializationFinished() {
+    override fun initComponents() {
         mQuestionAdapter = QuestionAdapter()
         mQuestionRecyclerView.layoutManager = LinearLayoutManager(context)
         mQuestionRecyclerView.adapter = mQuestionAdapter

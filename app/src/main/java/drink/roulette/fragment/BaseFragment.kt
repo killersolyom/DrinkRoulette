@@ -23,10 +23,10 @@ abstract class BaseFragment : Fragment(), EventListener {
         if (view == null) {
             mView = inflanter.inflate(getLayoutId(), container, false)
         }
-        initComponents()
         findView(mView)
         injectModules()
         arguments?.let { loadArguments(it) }
+        initComponents()
         return mView
     }
 
@@ -44,7 +44,7 @@ abstract class BaseFragment : Fragment(), EventListener {
     protected open fun loadArguments(bundle: Bundle) {
     }
 
-    protected abstract fun onInitializationFinished()
+    protected open fun onInitializationFinished() {}
 
     protected open fun removeCallbacks() {}
 
