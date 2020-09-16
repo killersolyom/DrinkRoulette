@@ -3,7 +3,6 @@ package drink.roulette.utility
 import android.content.Context
 import drink.roulette.data.JsonDataParser
 import drink.roulette.model.DefaultItem
-import drink.roulette.model.playerName.PlayerNames
 import drink.roulette.model.questions.BaseDefaultQuestion
 import drink.roulette.model.questions.endMessage.EndMessage
 import drink.roulette.model.questions.question.BaseQuestionItem
@@ -19,7 +18,7 @@ class QuestionManager(mContext: Context) {
         mDataParser.parseJson(mContext)
     }
 
-    fun getRandomQuestions(playerNames: PlayerNames): ArrayList<DefaultItem> {
+    fun getRandomQuestions(playerNames: ArrayList<String>): ArrayList<DefaultItem> {
         val questionItems = ArrayList<BaseDefaultQuestion>()
         questionItems.addAll(getRandomItems(mDataParser.getQuestionForAllList()))
         questionItems.addAll(getRandomItems(mDataParser.getPlayerDedicatedQuestionList()))
@@ -33,7 +32,7 @@ class QuestionManager(mContext: Context) {
         questionItems.forEach {
 
             if (it is PlayerNamesCallback) {
-                it.setPlayerNames(playerNames)
+                it.addPlayerNames(playerNames)
             }
 
             questionList.add(it)
